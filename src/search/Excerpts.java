@@ -2,17 +2,28 @@ package search;
 
 import java.util.ArrayList;
 
+import application.HTMLTextWrapper;
+
 public class Excerpts {
 
 	private String name;
 	private ArrayList<Excerpt> excerpts;
 	private int totalNumberOfMatches;
+	private HTMLTextWrapper textColourer;
 	
 	public Excerpts(String name) {
 		
 		this.name = name;
 		this.excerpts = new ArrayList<>();
 		this.totalNumberOfMatches = 0;
+		this.textColourer = new HTMLTextWrapper();
+		
+	}
+	
+	public void addExcept(Excerpt excerpt) {
+		
+		this.excerpts.add(excerpt);
+		this.totalNumberOfMatches += excerpt.getNumberOfMatches();
 		
 	}
 	
@@ -20,13 +31,10 @@ public class Excerpts {
 	public String toString() {
 		
 		String text = "";
-		text += this.name + "\n";
-		text = this.addSpaces(3, text);
 		
-		for (Excerpt excerpt : this.excerpts) {
+		for (String line : this.getArrayOfLinesInAllExcerpts()) {
 			
-			text += excerpt.getText();
-			text = this.addSpaces(3, text);
+			text += line + "\n";
 			
 		}
 		
@@ -34,14 +42,28 @@ public class Excerpts {
 		
 	}
 	
-	public ArrayList<String> getArrayOfLinesInAllExcerpts() {
-		
+	public ArrayList<String> getArrayOfLinesInAllExcerpts() { //the lines that displayed on the screen using JList	
+															  //TODO think of a better name
 		ArrayList<String> arrayOfLinesInAllExcerpts = new ArrayList<>();
 		
-		arrayOfLinesInAllExcerpts.add(this.name);
-		arrayOfLinesInAllExcerpts.add(String.format("<html><font color = navy>Matches in this file: %s</font>", this.totalNumberOfMatches));
+		arrayOfLinesInAllExcerpts = this.addHeader(arrayOfLinesInAllExcerpts);
+		arrayOfLinesInAllExcerpts = this.addContents(arrayOfLinesInAllExcerpts);
 		
+		return arrayOfLinesInAllExcerpts;
+		
+	}
+	
+	private ArrayList<String> addHeader(ArrayList<String> arrayOfLinesInAllExcerpts) {
+		
+		arrayOfLinesInAllExcerpts.add(this.name);
+		arrayOfLinesInAllExcerpts.add("<html>" + this.textColourer.wrapInNavyHTML("matches in this file: " + this.totalNumberOfMatches));	
 		arrayOfLinesInAllExcerpts = this.addLines(3, arrayOfLinesInAllExcerpts);
+		
+		return arrayOfLinesInAllExcerpts;
+		
+	}
+	
+	private ArrayList<String> addContents(ArrayList<String> arrayOfLinesInAllExcerpts) {
 		
 		for (Excerpt excerpt : this.excerpts) {
 			
@@ -54,49 +76,22 @@ public class Excerpts {
 		
 	}
 	
-	private ArrayList<String> addLines(int numberOfNewLines, ArrayList<String> all) {
+	private ArrayList<String> addLines(int numberOfNewLines, ArrayList<String> arrayOfLinesInAllExcerpts) {
 		
 		for (int i = 0 ; i < numberOfNewLines ; i++) {
 			
-			all.add("   ");
+			arrayOfLinesInAllExcerpts.add("   ");
 			
 		}
 		
-		return all;
+		return arrayOfLinesInAllExcerpts;
 		
 	}
 	
-	public String getName() {
+	public boolean containsExcerpts() {
 		
-		return this.name;
-		
-	}
-	
-	public void addExcept(Excerpt excerpt) {
-		
-		this.excerpts.add(excerpt);
-		this.totalNumberOfMatches += excerpt.getNumberOfMatches();
+		return !this.excerpts.isEmpty();
 		
 	}
-	
-	public void print() {
-		
-		System.out.println(this.toString());
-		
-	}
-	
-	private String addSpaces(int numberOfSpaces, String text) {
-		
-		for (int i = 0 ; i < numberOfSpaces ; i++) {
-			
-			text += "\n";
-			
-		}
-		
-		return text;
-		
-	}
-	
-	
 	
 }

@@ -57,7 +57,7 @@ public class Searcher {
 	private Excerpts search(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts fileExcerpts = new Excerpts(this.textColourer.wrapInNavyHTML(name));
+		Excerpts excerpts = new Excerpts("<html>" + this.textColourer.wrapInNavyHTML(name));
 		
 		this.lineIndex = 0;
 		
@@ -67,7 +67,7 @@ public class Searcher {
 			if (line.contains(this.searchTerm)) {
 				
 				Excerpt excerpt = this.addLinesToExcerpt(lines);
-				fileExcerpts.addExcept(excerpt);
+				excerpts.addExcept(excerpt);
 				
 			}
 			
@@ -75,7 +75,7 @@ public class Searcher {
 			
 		}
 		
-		return fileExcerpts;
+		return excerpts;
 		
 	}
 	
@@ -93,7 +93,7 @@ public class Searcher {
 				break;
 			}
 			
-			String line = lines.get(offsettedLineIndex);
+			String line = lines.get(offsettedLineIndex).toLowerCase();
 			String lineToBeAdded = this.getLineNumber(offsettedLineIndex) + this.getSpaces(offsettedLineIndex) + this.getLineWithHighlightedText(line);
 			
 			if (line.contains(this.searchTerm)) {
@@ -156,20 +156,32 @@ public class Searcher {
 	
 	private void display() {
 		
-		ArrayList<String> all = new ArrayList<>();
-		
-		for (Excerpts excerpts : this.results) {
-			
-			all.addAll(excerpts.getArrayOfLinesInAllExcerpts());
-			
-		}
-		
-		JList list = new JList(all.toArray());
+		JList list = new JList(this.getLinesToBeDisplayed().toArray());
 		JScrollPane scroller = new JScrollPane(list);
 		scroller.getVerticalScrollBar().setUnitIncrement(40);
 		scroller.setPreferredSize(this.panel_centre.getSize());
 		this.panel_centre.add(scroller, BorderLayout.CENTER);
 		this.panel_centre.revalidate();
+		
+	}
+	
+	private ArrayList<String> getLinesToBeDisplayed() {
+		
+		ArrayList<String> linesToBeDisplayed = new ArrayList<>();
+		linesToBeDisplayed.add("<html>" + this.textColourer.wrapInNavyHTML("Search Term: " + this.searchTerm));
+		linesToBeDisplayed.add("    ");
+		
+		for (Excerpts excerpts : this.results) {
+			
+			if (excerpts.containsExcerpts()) {
+				
+				linesToBeDisplayed.addAll(excerpts.getArrayOfLinesInAllExcerpts());
+				
+			}
+			
+		}
+		
+		return linesToBeDisplayed;
 		
 	}
 

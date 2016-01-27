@@ -13,22 +13,27 @@ public class Excerpt {
 		this.numberOfMatches = 0;
 		
 	}
-
-	public void addLine(String line, boolean hasMatch) {
+	
+	public void addLine(String line, boolean containsMatch) {
 		
 		this.lines.add(line);
 		
-		if (hasMatch) {
+		if (containsMatch) {
 			this.numberOfMatches++;
 		}
 		
 	}
 	
-	public void print() {
+	@Override
+	public String toString() {
 		
+		String toString = "";
 		
-		System.out.println(this.toString());
+		for (String line : this.lines) {
+			toString += line + "\n";
+		}
 		
+		return toString;
 		
 	}
 	
@@ -56,17 +61,6 @@ public class Excerpt {
 		
 	}
 	
-	@Override
-	public String toString() {
-		
-		String toString = "";
-		
-		for (String line : this.lines) {
-			toString += line + "\n";
-		}
-		
-		return toString;
-		
-	}
+	
 	
 }

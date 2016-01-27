@@ -51,24 +51,7 @@ public class Window {
 	private JMenuItem mntmExcertpSize;
 	private HashMap<String, ArrayList<String>> namesAndText = new HashMap<>();
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Window window = new Window();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public Window() {
-		initialize();
-	}
-
-	private void initialize() {
+	public void initialize() {
 
 		this.addTheme();
 		this.initialiseFrame();
@@ -76,6 +59,7 @@ public class Window {
 		this.initialiseTopPanel();
 		this.initialiseCentrePanel();
 		this.addActionListeners();
+		frame.setVisible(true);
 
 	}
 	
@@ -133,7 +117,6 @@ public class Window {
 		this.panel_top_west.add(this.btnSelectDirectory);
 			
 		this.directoryLabel = new JLabel();
-		//this.directoryLabel.setColumns(50);
 		this.panel_top_west.add(this.directoryLabel);
 		
 	}
