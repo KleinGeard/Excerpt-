@@ -120,6 +120,16 @@ public class Searcher {
 		
 	}
 	
+	private int getOffset(int lineIndex) {
+		
+		if (lineIndex <= this.excerptSize) { //ensures that offset is not greater than the lineIndex to avoid nullpointer
+			return -lineIndex; 
+		} else {
+			return -this.excerptSize;
+		}
+		
+	}
+	
 	private String getLineNumber(int lineIndex) {
 		
 		return "<html>" + this.textColourer.wrapInRedHTML(Integer.toString(lineIndex + 1));
@@ -142,16 +152,6 @@ public class Searcher {
 	private String getLineWithHighlightedSearchTerm(String line) {
 		
 		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
-		
-	}
-	
-	private int getOffset(int lineIndex) {
-		
-		if (lineIndex <= this.excerptSize) { //ensures that offset is not greater than the lineIndex to avoid nullpointer
-			return -lineIndex; 
-		} else {
-			return -this.excerptSize;
-		}
 		
 	}
 	
