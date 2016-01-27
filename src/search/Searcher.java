@@ -95,7 +95,7 @@ public class Searcher {
 			}
 			
 			String line = lines.get(offsettedLineIndex).toLowerCase();
-			String lineToBeAdded = this.getLineNumber(offsettedLineIndex) + this.getSpaces(offsettedLineIndex) + this.getLineWithHighlightedText(line);
+			String lineToBeAdded = this.getLineNumber(offsettedLineIndex) + this.getSpaces(offsettedLineIndex) + this.getLineWithHighlightedSearchTerm(line);
 			
 			if (line.contains(this.searchTerm)) {
 				
@@ -139,7 +139,7 @@ public class Searcher {
 		
 	}
 	
-	private String getLineWithHighlightedText(String line) {
+	private String getLineWithHighlightedSearchTerm(String line) {
 		
 		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
 		
