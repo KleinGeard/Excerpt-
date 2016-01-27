@@ -39,7 +39,7 @@ public class Searcher {
 		
 		for (String name : this.namesAndText.keySet()) {
 			
-			Excerpts excerpts = this.search(name);
+			Excerpts excerpts = this.getExcerpts(name);
 			this.results.add(excerpts);
 			
 		}
@@ -55,7 +55,7 @@ public class Searcher {
 		
 	}
 	
-	private Excerpts search(String name) {
+	private Excerpts getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
 		Excerpts excerpts = new Excerpts("<html>" + this.textColourer.wrapInNavyHTML(name));
