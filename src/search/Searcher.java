@@ -1,12 +1,13 @@
 package search;
 
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
 
 import application.HTMLTextWrapper;
 
@@ -156,6 +157,7 @@ public class Searcher {
 	
 	private void display() {
 		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JList list = new JList(this.getLinesToBeDisplayed().toArray());
 		JScrollPane scroller = new JScrollPane(list);
 		scroller.getVerticalScrollBar().setUnitIncrement(40);
