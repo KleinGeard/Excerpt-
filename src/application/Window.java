@@ -35,7 +35,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Canvas;
 
-public class Main {
+public class Window {
 
 	private JFrame frame;
 	private JPanel panel_top;
@@ -55,7 +55,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main window = new Main();
+					Window window = new Window();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +64,7 @@ public class Main {
 		});
 	}
 
-	public Main() {
+	public Window() {
 		initialize();
 	}
 

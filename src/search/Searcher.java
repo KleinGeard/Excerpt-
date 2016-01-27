@@ -8,6 +8,8 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import application.HTMLTextWrapper;
+
 public class Searcher {
 	
 	private HashMap<String, ArrayList<String>> namesAndText;
@@ -16,6 +18,7 @@ public class Searcher {
 	private ArrayList<Excerpts> results;
 	private int excerptSize;
 	private int lineIndex;
+	private HTMLTextWrapper textColourer;
 
 	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panel_centre) {
 		
@@ -25,6 +28,7 @@ public class Searcher {
 		this.results = new ArrayList<Excerpts>();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
+		this.textColourer = new HTMLTextWrapper();
 		
 	}
 	
@@ -53,7 +57,7 @@ public class Searcher {
 	private Excerpts search(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts fileExcerpts = new Excerpts(this.wrapInNavyHTML(name));
+		Excerpts fileExcerpts = new Excerpts(this.textColourer.wrapInNavyHTML(name));
 		
 		this.lineIndex = 0;
 		
@@ -72,12 +76,6 @@ public class Searcher {
 		}
 		
 		return fileExcerpts;
-		
-	}
-	
-	private String wrapInNavyHTML(String string) {
-		
-		return String.format("<html><font color = navy>%s</font>", string);
 		
 	}
 	
@@ -123,7 +121,7 @@ public class Searcher {
 	
 	private String getLineNumber(int lineIndex) {
 		
-		return "<html>" + this.wrapInRedHTML(Integer.toString(lineIndex + 1));
+		return "<html>" + this.textColourer.wrapInRedHTML(Integer.toString(lineIndex + 1));
 		
 	}
 	
@@ -136,25 +134,13 @@ public class Searcher {
 			spaces += "_";
 		}
 		
-		return this.wrapInwhiteHTML(spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
+		return this.textColourer.wrapInWhiteHTML(spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
 		
 	}
 	
 	private String getLineWithHighlightedText(String line) {
 		
-		return line.replace(this.searchTerm, this.wrapInRedHTML(this.searchTerm));
-		
-	}
-	
-	private String wrapInRedHTML(String string) {
-		
-		return String.format("<font color = red>%s</font>", string);
-		
-	}
-	
-	private String wrapInwhiteHTML(String string) {
-		
-		return String.format("<font color = white>%s</font>", string);
+		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
 		
 	}
 	

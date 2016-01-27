@@ -28,10 +28,22 @@ public class SelectFolderListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-        this.runFileChooser(); 
-        this.addContentsToMap();
+		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
+	        @Override
+	        public void run() {
+	        	
+	        	runFileChooser(); 
+	            addContentsToMap();
+	            
+	            directoryLabel.setText(chosenDirectory.toString());
+	        	
+	        }    
+	        
+	    });
+		
+		t.start();
+		
         
-        this.directoryLabel.setText(this.chosenDirectory.toString());
         
 	}
 	
@@ -55,8 +67,8 @@ public class SelectFolderListener implements ActionListener {
 			
 			if (file.toString().contains(".txt")) {
 				
+				this.directoryLabel.setText("loading " + file.getName());
 				this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
-				System.out.println(file.getName());
 				
 			}
 			
