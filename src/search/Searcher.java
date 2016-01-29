@@ -11,7 +11,7 @@ import java.awt.BorderLayout;
 
 import application.HTMLTextWrapper;
 
-public class Searcher {
+public class Searcher { //TODO maybe break up into smaller classes
 	
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
@@ -20,7 +20,7 @@ public class Searcher {
 	private int excerptSize;
 	private int lineIndex;
 	private HTMLTextWrapper textColourer;
-
+	
 	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panel_centre) {
 		
 		this.namesAndText = namesAndText;
@@ -37,12 +37,7 @@ public class Searcher {
 		
 		this.resetVariables();
 		
-		for (String name : this.namesAndText.keySet()) {
-			
-			Excerpts excerpts = this.getExcerpts(name);
-			this.results.add(excerpts);
-			
-		}
+		for (String name : this.namesAndText.keySet()) this.results.add(this.getExcerpts(name));
 		
 		this.display();
 		
@@ -65,12 +60,8 @@ public class Searcher {
 		while (this.lineIndex < lines.size() - 1) {
 			
 			String line = lines.get(this.lineIndex).toLowerCase();
-			if (line.contains(this.searchTerm)) {
-				
-				Excerpt excerpt = this.addLinesToExcerpt(lines);
-				excerpts.addExcept(excerpt);
-				
-			}
+			
+			if (line.contains(this.searchTerm)) excerpts.addExcept(this.getExcerpt(lines));
 			
 			this.lineIndex++;
 			
@@ -80,53 +71,44 @@ public class Searcher {
 		
 	}
 	
-	private Excerpt addLinesToExcerpt(ArrayList<String> lines) { //TODO break up into smaller methods
+	private Excerpt getExcerpt(ArrayList<String> lines) {
 		
 		Excerpt excerpt = new Excerpt();
-		int indexesFromLastMatch = this.getOffset(this.lineIndex);
-		int offSetFromLineIndex = this.getOffset(this.lineIndex);
-		
-		while (indexesFromLastMatch <= this.excerptSize) {
-			
-			int offsettedLineIndex = this.lineIndex + offSetFromLineIndex;
-			
-			if ((offsettedLineIndex) >= lines.size()) {
-				break;
-			}
-			
-			String line = lines.get(offsettedLineIndex).toLowerCase();
-			String lineToBeAdded = this.getLineNumber(offsettedLineIndex) + this.getSpaces(offsettedLineIndex) + this.getLineWithHighlightedSearchTerm(line);
-			
-			if (line.contains(this.searchTerm)) {
-				
-				excerpt.addLine(lineToBeAdded, true);
-				
-				indexesFromLastMatch = 0;
-				
-			} else {
-				
-				excerpt.addLine(lineToBeAdded, false);
-				
-			}
-			
-			indexesFromLastMatch++;
-			offSetFromLineIndex++;
-			
-		}
-		
-		this.lineIndex = this.lineIndex + offSetFromLineIndex;
+		this.addLinesToExcerpt(excerpt, lines);
 		
 		return excerpt;
 		
 	}
 	
+	private void addLinesToExcerpt(Excerpt excerpt, ArrayList<String> lines) {
+		
+		int indexesFromLastMatch = this.getOffset(this.lineIndex);
+		this.lineIndex = this.lineIndex + indexesFromLastMatch;
+		
+		while (indexesFromLastMatch <= this.excerptSize && this.lineIndex < lines.size()) {
+			
+			String line = lines.get(this.lineIndex).toLowerCase();
+			boolean containsSearchTerm = line.contains(this.searchTerm);
+			
+			excerpt.addLine(this.getLineToBeAdded(line), containsSearchTerm);
+			if (containsSearchTerm) indexesFromLastMatch = 0;
+			
+			indexesFromLastMatch++;
+			this.lineIndex++;
+			
+		}
+		
+	}
+	
 	private int getOffset(int lineIndex) {
 		
-		if (lineIndex <= this.excerptSize) { //ensures that offset is not greater than the lineIndex to avoid nullpointer
-			return -lineIndex; 
-		} else {
-			return -this.excerptSize;
-		}
+		return (lineIndex <= this.excerptSize) ? -lineIndex : -this.excerptSize;
+		
+	}
+	
+	private String getLineToBeAdded(String line) {
+		
+		return this.getLineNumber(this.lineIndex) + this.getSpaces(this.lineIndex) + this.getLineWithHighlightedSearchTerm(line);
 		
 	}
 	
@@ -141,9 +123,7 @@ public class Searcher {
 		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		String spaces = "";
 		
-		for (int i = 0 ; i < numberOfSpaces ; i++) {
-			spaces += "_";
-		}
+		for (int i = 0 ; i < numberOfSpaces ; i++) spaces += "_";
 		
 		return this.textColourer.wrapInWhiteHTML(spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
 		
@@ -160,8 +140,10 @@ public class Searcher {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		JList list = new JList(this.getLinesToBeDisplayed().toArray());
 		JScrollPane scroller = new JScrollPane(list);
+		
 		scroller.getVerticalScrollBar().setUnitIncrement(40);
 		scroller.setPreferredSize(this.panel_centre.getSize());
+		
 		this.panel_centre.add(scroller, BorderLayout.CENTER);
 		this.panel_centre.revalidate();
 		
@@ -175,11 +157,7 @@ public class Searcher {
 		
 		for (Excerpts excerpts : this.results) {
 			
-			if (excerpts.containsExcerpts()) {
-				
-				linesToBeDisplayed.addAll(excerpts.getArrayOfLinesInAllExcerpts());
-				
-			}
+			if (excerpts.containsExcerpts()) linesToBeDisplayed.addAll(excerpts.getArrayOfLinesInAllExcerpts());
 			
 		}
 		
