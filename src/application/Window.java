@@ -6,9 +6,6 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.JFrame;
@@ -34,9 +31,6 @@ public class Window {
 	private JButton btnSearch;
 	private JButton btnSelectDirectory;
 	private JLabel directoryLabel;
-	private JMenuBar menuBar;
-	private JMenu mnOptions;
-	private JMenuItem mntmExcertpSize;
 	private HashMap<String, ArrayList<String>> namesAndText = new HashMap<>();
 
 	public void initialize() {
