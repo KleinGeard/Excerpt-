@@ -107,6 +107,7 @@ public class Window {
 		
 		this.panel_centre = new JPanel();
 		this.panel_centre.setBackground(Color.WHITE);
+		this.panel_centre.setLayout(new BorderLayout());
 		this.frame.getContentPane().add(this.panel_centre, BorderLayout.CENTER);
 
 		

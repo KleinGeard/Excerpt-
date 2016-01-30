@@ -97,11 +97,7 @@ public class SelectFolderListener implements ActionListener {
 			
 			this.reader = new BufferedReader(new FileReader(file));
 			
-			while((line = this.reader.readLine()) != null){
-				
-				lines.add(line);
-				
-	        }
+			while((line = this.reader.readLine()) != null) lines.add(line);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

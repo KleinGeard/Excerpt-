@@ -18,9 +18,7 @@ public class Excerpt {
 		
 		this.lines.add(line);
 		
-		if (containsMatch) {
-			this.numberOfMatches++;
-		}
+		if (containsMatch) this.numberOfMatches++;
 		
 	}
 	
@@ -29,9 +27,7 @@ public class Excerpt {
 		
 		String toString = "";
 		
-		for (String line : this.lines) {
-			toString += line + "\n";
-		}
+		for (String line : this.lines) toString += line + "\n";
 		
 		return toString;
 		
@@ -41,9 +37,7 @@ public class Excerpt {
 		
 		String text = "";
 		
-		for (String line : this.lines) {
-			text += line + "\n";
-		}
+		for (String line : this.lines) text += line + "\n";
 		
 		return text;
 		

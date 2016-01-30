@@ -3,11 +3,15 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
 import application.HTMLTextWrapper;
 
@@ -100,6 +104,12 @@ public class Searcher { //TODO maybe break up into smaller classes
 		
 	}
 	
+	private void addLine(String line, int indexesFromLastMatch, Excerpt excerpt) {
+		
+		
+		
+	}
+	
 	private int getOffset(int lineIndex) {
 		
 		return (lineIndex <= this.excerptSize) ? -lineIndex : -this.excerptSize;
@@ -137,31 +147,46 @@ public class Searcher { //TODO maybe break up into smaller classes
 	
 	private void display() {
 		
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		JList list = new JList(this.getLinesToBeDisplayed().toArray());
-		JScrollPane scroller = new JScrollPane(list);
+		this.addResultNameScroller();
 		
-		scroller.getVerticalScrollBar().setUnitIncrement(40);
-		scroller.setPreferredSize(this.panel_centre.getSize());
-		
-		this.panel_centre.add(scroller, BorderLayout.CENTER);
 		this.panel_centre.revalidate();
+		this.panel_centre.repaint();
 		
 	}
 	
-	private ArrayList<String> getLinesToBeDisplayed() {
+	private void addResultNameScroller() { //TODO break into smaller methods
 		
-		ArrayList<String> linesToBeDisplayed = new ArrayList<>();
-		linesToBeDisplayed.add("<html>" + this.textColourer.wrapInNavyHTML("Search Term: " + this.searchTerm));
-		linesToBeDisplayed.add("    ");
+		JPanel panel_centre_results = new JPanel();
+		panel_centre_results.setLayout(new FlowLayout());
+		panel_centre_results.setBackground(Color.WHITE);
+		
+		JPanel panel_centre_centre = new JPanel();
+		panel_centre_centre.setLayout(new BorderLayout());
+		panel_centre_centre.setBackground(Color.WHITE);
+		panel_centre_centre.setSize(this.panel_centre.getSize());
 		
 		for (Excerpts excerpts : this.results) {
 			
-			if (excerpts.containsExcerpts()) linesToBeDisplayed.addAll(excerpts.getArrayOfLinesInAllExcerpts());
+			if (excerpts.containsExcerpts()) {
+				
+				JButton nameButton = new JButton(excerpts.getName() + " / matches: " + excerpts.getNumberOfMatches());
+				
+				NameButtonListener nameButtonListener = new NameButtonListener(excerpts, panel_centre_centre);
+				nameButton.addActionListener(nameButtonListener);
+				
+				panel_centre_results.add(nameButton);
+				
+			}
 			
 		}
 		
-		return linesToBeDisplayed;
+		JScrollPane resultNameScroller = new JScrollPane(panel_centre_results);
+		
+		resultNameScroller.getHorizontalScrollBar().setUnitIncrement(20);
+		resultNameScroller.setPreferredSize(new Dimension(this.panel_centre.getWidth(), 58));
+		
+		this.panel_centre.add(resultNameScroller, BorderLayout.NORTH);
+		this.panel_centre.add(panel_centre_centre, BorderLayout.CENTER);
 		
 	}
 

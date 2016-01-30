@@ -20,6 +20,17 @@ public class Excerpts {
 		
 	}
 	
+	public String getName() {
+		
+		return this.name;
+		
+	}
+	
+	public int getNumberOfMatches() {
+		
+		return this.totalNumberOfMatches;	
+	}
+	
 	public void addExcept(Excerpt excerpt) {
 		
 		this.excerpts.add(excerpt);
@@ -32,11 +43,7 @@ public class Excerpts {
 		
 		String text = "";
 		
-		for (String line : this.getArrayOfLinesInAllExcerpts()) {
-			
-			text += line + "\n";
-			
-		}
+		for (String line : this.getArrayOfLinesInAllExcerpts()) text += line + "\n";
 		
 		return text;
 		
