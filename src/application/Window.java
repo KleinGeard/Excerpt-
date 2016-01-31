@@ -23,10 +23,10 @@ import search.SearchListener;
 public class Window {
 
 	private JFrame frame;
-	private JPanel panel_top;
-	private JPanel panel_centre;
-	private JPanel panel_top_west;
-	private JPanel panel_top_east;
+	private JPanel panelNorth;
+	private JPanel panelCentre;
+	private JPanel panelNorthWest;
+	private JPanel panelNorthEast;
 	private JTextField searchField;
 	private JButton btnSearch;
 	private JButton btnSelectDirectory;
@@ -37,7 +37,7 @@ public class Window {
 
 		this.addTheme();
 		this.initialiseFrame();
-		this.initialiseTopPanel();
+		this.initialiseNorthPanel();
 		this.initialiseCentrePanel();
 		this.addActionListeners();
 		frame.setVisible(true);
@@ -65,11 +65,11 @@ public class Window {
 		
 	}
 	
-	private void initialiseTopPanel() {
+	private void initialiseNorthPanel() {
 		
-		this.panel_top = new JPanel();
-		this.frame.getContentPane().add(this.panel_top, BorderLayout.NORTH);	
-		this.panel_top.setLayout(new BorderLayout(0, 0));
+		this.panelNorth = new JPanel();
+		this.frame.getContentPane().add(this.panelNorth, BorderLayout.NORTH);	
+		this.panelNorth.setLayout(new BorderLayout(0, 0));
 		
 		this.initialiseTopWestPanelComponents();
 		this.initialiseTopEastPanelComponents();
@@ -78,37 +78,37 @@ public class Window {
 	
 	private void initialiseTopWestPanelComponents() {
 		
-		this.panel_top_west = new JPanel();
-		this.panel_top.add(this.panel_top_west, BorderLayout.WEST);
+		this.panelNorthWest = new JPanel();
+		this.panelNorth.add(this.panelNorthWest, BorderLayout.WEST);
 			
 		this.btnSelectDirectory = new JButton("Select Directory");
-		this.panel_top_west.add(this.btnSelectDirectory);
+		this.panelNorthWest.add(this.btnSelectDirectory);
 			
 		this.directoryLabel = new JLabel();
-		this.panel_top_west.add(this.directoryLabel);
+		this.panelNorthWest.add(this.directoryLabel);
 		
 	}
 	
 	private void initialiseTopEastPanelComponents() {
 		
-		this.panel_top_east = new JPanel();
-		this.panel_top.add(this.panel_top_east, BorderLayout.EAST);
+		this.panelNorthEast = new JPanel();
+		this.panelNorth.add(this.panelNorthEast, BorderLayout.EAST);
 		
 		this.searchField = new JTextField();
 		this.searchField.setColumns(10);
-		this.panel_top_east.add(this.searchField);
+		this.panelNorthEast.add(this.searchField);
 		
 		this.btnSearch = new JButton("Search");
-		this.panel_top_east.add(this.btnSearch);
+		this.panelNorthEast.add(this.btnSearch);
 		
 	}
 	
 	private void initialiseCentrePanel() {
 		
-		this.panel_centre = new JPanel();
-		this.panel_centre.setBackground(Color.WHITE);
-		this.panel_centre.setLayout(new BorderLayout());
-		this.frame.getContentPane().add(this.panel_centre, BorderLayout.CENTER);
+		this.panelCentre = new JPanel();
+		this.panelCentre.setBackground(Color.WHITE);
+		this.panelCentre.setLayout(new BorderLayout());
+		this.frame.getContentPane().add(this.panelCentre, BorderLayout.CENTER);
 
 		
 	}
@@ -118,7 +118,7 @@ public class Window {
 		SelectFolderListener selectDirectoryFolderListener = new SelectFolderListener(this.directoryLabel, this.namesAndText);
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
-		SearchListener searchListener = new SearchListener(this.namesAndText, this.panel_centre, this.searchField);
+		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, this.searchField);
 		this.btnSearch.addActionListener(searchListener);
 		this.searchField.addActionListener(searchListener);
 		

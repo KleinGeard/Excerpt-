@@ -11,29 +11,29 @@ import javax.swing.JScrollPane;
 public class NameButtonListener implements ActionListener {
 
 	private Excerpts excerpts;
-	private JPanel panel_centre_centre;
+	private JPanel panelCentreCentre;
 	
-	public NameButtonListener(Excerpts excerpts, JPanel panel_centre_centre) {
+	public NameButtonListener(Excerpts excerpts, JPanel panelCentreCentre) {
 
 		this.excerpts = excerpts;
-		this.panel_centre_centre = panel_centre_centre;
+		this.panelCentreCentre = panelCentreCentre;
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		this.panel_centre_centre.removeAll();
+		this.panelCentreCentre.removeAll();
 		
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		JScrollPane resultScroller = new JScrollPane(new JList(excerpts.getArrayOfLinesInAllExcerpts().toArray()));
 		resultScroller.getVerticalScrollBar().setUnitIncrement(40);
-		resultScroller.setPreferredSize(new Dimension(this.panel_centre_centre.getWidth(), 58));
+		resultScroller.setPreferredSize(new Dimension(this.panelCentreCentre.getWidth(), 58));
 		
-		this.panel_centre_centre.add(resultScroller);
+		this.panelCentreCentre.add(resultScroller);
 		
-		this.panel_centre_centre.repaint();
-		this.panel_centre_centre.revalidate();
+		this.panelCentreCentre.repaint();
+		this.panelCentreCentre.revalidate();
 		
 	}
 

@@ -19,17 +19,17 @@ public class Searcher { //TODO maybe break up into smaller classes
 	
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
-	private JPanel panel_centre;
+	private JPanel panelCentre;
 	private ArrayList<Excerpts> results;
 	private int excerptSize;
 	private int lineIndex;
 	private HTMLTextWrapper textColourer;
 	
-	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panel_centre) {
+	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panelCentre) {
 		
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
-		this.panel_centre = panel_centre;
+		this.panelCentre = panelCentre;
 		this.results = new ArrayList<Excerpts>();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
@@ -43,13 +43,14 @@ public class Searcher { //TODO maybe break up into smaller classes
 		
 		for (String name : this.namesAndText.keySet()) this.results.add(this.getExcerpts(name));
 		
-		this.display();
+		Displayer displayer = new Displayer(panelCentre, results);
+		displayer.display();
 		
 	}
 	
 	private void resetVariables() {
 		
-		this.panel_centre.removeAll();
+		this.panelCentre.removeAll();
 		this.results.clear();
 		
 	}
@@ -104,12 +105,6 @@ public class Searcher { //TODO maybe break up into smaller classes
 		
 	}
 	
-	private void addLine(String line, int indexesFromLastMatch, Excerpt excerpt) {
-		
-		
-		
-	}
-	
 	private int getOffset(int lineIndex) {
 		
 		return (lineIndex <= this.excerptSize) ? -lineIndex : -this.excerptSize;
@@ -142,72 +137,6 @@ public class Searcher { //TODO maybe break up into smaller classes
 	private String getLineWithHighlightedSearchTerm(String line) {
 		
 		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
-		
-	}
-	
-	private void display() {
-		
-		JPanel panel_centre_centre = this.createPanelCentreCentre();
-		JScrollPane topScroller = this.createTopScroller(panel_centre_centre);
-		
-		this.panel_centre.add(topScroller, BorderLayout.NORTH);
-		this.panel_centre.add(panel_centre_centre, BorderLayout.CENTER);
-		
-		this.panel_centre.revalidate();
-		this.panel_centre.repaint();
-		
-	}
-	
-	private JPanel createPanelCentreCentre() {
-		
-		JPanel panel_centre_centre = new JPanel();
-		panel_centre_centre.setLayout(new BorderLayout());
-		panel_centre_centre.setBackground(Color.WHITE);
-		panel_centre_centre.setSize(this.panel_centre.getSize());
-		
-		return panel_centre_centre;
-		
-	}
-	
-	private JScrollPane createTopScroller(JPanel panel_centre_centre) {
-		
-		JPanel panel_centre_scroller = this.getPanelCentreScroller(panel_centre_centre);
-		
-		JScrollPane topScroller = new JScrollPane(panel_centre_scroller);
-		topScroller.getHorizontalScrollBar().setUnitIncrement(20);
-		topScroller.setPreferredSize(new Dimension(this.panel_centre.getWidth(), 58));
-		
-		return topScroller;
-		
-	}
-	
-	private JPanel getPanelCentreScroller(JPanel panel_centre_centre) {
-		
-		JPanel panel_centre_scroller = new JPanel();
-		panel_centre_scroller.setLayout(new FlowLayout());
-		panel_centre_scroller.setBackground(Color.WHITE);
-		this.addContentsToPanelCentreScroller(panel_centre_centre, panel_centre_scroller);
-		
-		return panel_centre_scroller;
-		
-	}
-	
-	private void addContentsToPanelCentreScroller(JPanel panel_centre_centre, JPanel panel_centre_scroller) {
-		
-		for (Excerpts excerpts : this.results) {
-			
-			if (excerpts.containsExcerpts()) {
-				
-				JButton nameButton = new JButton(excerpts.getName() + " / matches: " + excerpts.getNumberOfMatches());
-				
-				NameButtonListener nameButtonListener = new NameButtonListener(excerpts, panel_centre_centre);
-				nameButton.addActionListener(nameButtonListener);
-				
-				panel_centre_scroller.add(nameButton);
-				
-			}
-			
-		}
 		
 	}
 
