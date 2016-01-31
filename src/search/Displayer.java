@@ -46,11 +46,11 @@ public class Displayer {
 		
 	}
 	
-	private JScrollPane createTopScroller(JPanel panel_centre_centre) {
+	private JScrollPane createTopScroller(JPanel panelCentreCentre) {
 		
-		JPanel panelCentreScroller = this.getPanelCentreScroller(panel_centre_centre);
+		JPanel panelTopScroller = this.getPanelTopScroller(panelCentreCentre);
 		
-		JScrollPane topScroller = new JScrollPane(panelCentreScroller);
+		JScrollPane topScroller = new JScrollPane(panelTopScroller);
 		topScroller.getHorizontalScrollBar().setUnitIncrement(20);
 		topScroller.setPreferredSize(new Dimension(this.panelCentre.getWidth(), 58));
 		
@@ -58,14 +58,14 @@ public class Displayer {
 		
 	}
 	
-	private JPanel getPanelCentreScroller(JPanel panelCentreCentre) {
+	private JPanel getPanelTopScroller(JPanel panelCentreCentre) {
 		
-		JPanel panelCentreScroller = new JPanel();
-		panelCentreScroller.setLayout(new FlowLayout());
-		panelCentreScroller.setBackground(Color.WHITE);
-		this.addContentsToPanelCentreScroller(panelCentreCentre, panelCentreScroller);
+		JPanel panelTopScroller = new JPanel();
+		panelTopScroller.setLayout(new FlowLayout());
+		panelTopScroller.setBackground(Color.WHITE);
+		this.addContentsToPanelCentreScroller(panelCentreCentre, panelTopScroller);
 		
-		return panelCentreScroller;
+		return panelTopScroller;
 		
 	}
 	
