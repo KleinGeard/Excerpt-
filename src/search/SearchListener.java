@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 public class SearchListener implements ActionListener {
 	
 	private HashMap<String, ArrayList<String>> namesAndText;
-	private JPanel panel_centre;
+	private JPanel panelCentre;
 	private JTextField searchField;
 	private String searchTerm;
 
-	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panel_centre, JTextField searchField) {
+	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panelCentre, JTextField searchField) {
 		
 		this.namesAndText = namesAndText;
-		this.panel_centre = panel_centre;
+		this.panelCentre = panelCentre;
 		this.searchField = searchField;
 		
 	}
@@ -29,11 +29,22 @@ public class SearchListener implements ActionListener {
 		
 		this.searchTerm = this.searchField.getText().toLowerCase();
 		
-		Searcher searcher = new Searcher(namesAndText, searchTerm, this.panel_centre);
-		searcher.searchAll();
+		this.searchAll();
 		
 		this.searchField.setText("");
 		
 	}	
+	
+	public void searchAll() {
+		
+		this.panelCentre.removeAll();
+		
+		ResultsGetter resultsGetter = new ResultsGetter(this.namesAndText, this.searchTerm, this.panelCentre);
+		ArrayList<Excerpts> results = resultsGetter.getResults();
+		
+		Displayer displayer = new Displayer(this.panelCentre, results);
+		displayer.display();
+		
+	}
 
 }

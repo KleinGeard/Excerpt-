@@ -3,33 +3,23 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JButton;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import application.HTMLTextWrapper;
 
-public class Searcher { //TODO maybe break up into smaller classes
-	
+public class ResultsGetter {
+
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
-	private JPanel panelCentre;
 	private ArrayList<Excerpts> results;
 	private int excerptSize;
 	private int lineIndex;
 	private HTMLTextWrapper textColourer;
 	
-	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panelCentre) {
-		
+	public ResultsGetter(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panelCentre) {
+
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
-		this.panelCentre = panelCentre;
 		this.results = new ArrayList<Excerpts>();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
@@ -37,24 +27,14 @@ public class Searcher { //TODO maybe break up into smaller classes
 		
 	}
 	
-	public void searchAll() {
-		
-		this.resetVariables();
+	public ArrayList<Excerpts> getResults() {
 		
 		for (String name : this.namesAndText.keySet()) this.results.add(this.getExcerpts(name));
 		
-		Displayer displayer = new Displayer(panelCentre, results);
-		displayer.display();
+		return this.results;
 		
 	}
-	
-	private void resetVariables() {
-		
-		this.panelCentre.removeAll();
-		this.results.clear();
-		
-	}
-	
+
 	private Excerpts getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
@@ -139,5 +119,5 @@ public class Searcher { //TODO maybe break up into smaller classes
 		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
 		
 	}
-
+	
 }
