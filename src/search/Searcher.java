@@ -147,23 +147,52 @@ public class Searcher { //TODO maybe break up into smaller classes
 	
 	private void display() {
 		
-		this.addResultNameScroller();
+		JPanel panel_centre_centre = this.createPanelCentreCentre();
+		JScrollPane topScroller = this.createTopScroller(panel_centre_centre);
+		
+		this.panel_centre.add(topScroller, BorderLayout.NORTH);
+		this.panel_centre.add(panel_centre_centre, BorderLayout.CENTER);
 		
 		this.panel_centre.revalidate();
 		this.panel_centre.repaint();
 		
 	}
 	
-	private void addResultNameScroller() { //TODO break into smaller methods
-		
-		JPanel panel_centre_results = new JPanel();
-		panel_centre_results.setLayout(new FlowLayout());
-		panel_centre_results.setBackground(Color.WHITE);
+	private JPanel createPanelCentreCentre() {
 		
 		JPanel panel_centre_centre = new JPanel();
 		panel_centre_centre.setLayout(new BorderLayout());
 		panel_centre_centre.setBackground(Color.WHITE);
 		panel_centre_centre.setSize(this.panel_centre.getSize());
+		
+		return panel_centre_centre;
+		
+	}
+	
+	private JScrollPane createTopScroller(JPanel panel_centre_centre) {
+		
+		JPanel panel_centre_scroller = this.getPanelCentreScroller(panel_centre_centre);
+		
+		JScrollPane topScroller = new JScrollPane(panel_centre_scroller);
+		topScroller.getHorizontalScrollBar().setUnitIncrement(20);
+		topScroller.setPreferredSize(new Dimension(this.panel_centre.getWidth(), 58));
+		
+		return topScroller;
+		
+	}
+	
+	private JPanel getPanelCentreScroller(JPanel panel_centre_centre) {
+		
+		JPanel panel_centre_scroller = new JPanel();
+		panel_centre_scroller.setLayout(new FlowLayout());
+		panel_centre_scroller.setBackground(Color.WHITE);
+		this.addContentsToPanelCentreScroller(panel_centre_centre, panel_centre_scroller);
+		
+		return panel_centre_scroller;
+		
+	}
+	
+	private void addContentsToPanelCentreScroller(JPanel panel_centre_centre, JPanel panel_centre_scroller) {
 		
 		for (Excerpts excerpts : this.results) {
 			
@@ -174,19 +203,11 @@ public class Searcher { //TODO maybe break up into smaller classes
 				NameButtonListener nameButtonListener = new NameButtonListener(excerpts, panel_centre_centre);
 				nameButton.addActionListener(nameButtonListener);
 				
-				panel_centre_results.add(nameButton);
+				panel_centre_scroller.add(nameButton);
 				
 			}
 			
 		}
-		
-		JScrollPane resultNameScroller = new JScrollPane(panel_centre_results);
-		
-		resultNameScroller.getHorizontalScrollBar().setUnitIncrement(20);
-		resultNameScroller.setPreferredSize(new Dimension(this.panel_centre.getWidth(), 58));
-		
-		this.panel_centre.add(resultNameScroller, BorderLayout.NORTH);
-		this.panel_centre.add(panel_centre_centre, BorderLayout.CENTER);
 		
 	}
 
