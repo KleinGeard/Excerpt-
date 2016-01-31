@@ -37,7 +37,7 @@ public class ResultsGetter {
 	private Excerpts getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts excerpts = new Excerpts("<html>" + this.textColourer.wrapInNavyHTML(name));
+		Excerpts excerpts = new Excerpts("<html>" + this.textColourer.wrapInNavyHTML(name), this.searchTerm);
 		
 		this.lineIndex = 0;
 		

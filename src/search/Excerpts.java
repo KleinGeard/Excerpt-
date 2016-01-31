@@ -10,13 +10,15 @@ public class Excerpts {
 	private ArrayList<Excerpt> excerpts;
 	private int totalNumberOfMatches;
 	private HTMLTextWrapper textColourer;
+	private String searchTerm;
 	
-	public Excerpts(String name) {
+	public Excerpts(String name, String searchTerm) {
 		
 		this.name = name;
 		this.excerpts = new ArrayList<>();
 		this.totalNumberOfMatches = 0;
 		this.textColourer = new HTMLTextWrapper();
+		this.searchTerm = searchTerm;
 		
 	}
 	
@@ -62,6 +64,7 @@ public class Excerpts {
 	
 	private ArrayList<String> addHeader(ArrayList<String> arrayOfLinesInAllExcerpts) {
 		
+		arrayOfLinesInAllExcerpts.add("<html>" + this.textColourer.wrapInNavyHTML("search term: " + this.searchTerm));
 		arrayOfLinesInAllExcerpts.add(this.name);
 		arrayOfLinesInAllExcerpts.add("<html>" + this.textColourer.wrapInNavyHTML("matches in this file: " + this.totalNumberOfMatches));	
 		arrayOfLinesInAllExcerpts = this.addLines(3, arrayOfLinesInAllExcerpts);
