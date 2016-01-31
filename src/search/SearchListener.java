@@ -39,7 +39,7 @@ public class SearchListener implements ActionListener {
 		
 		this.panelCentre.removeAll();
 		
-		ResultsGetter resultsGetter = new ResultsGetter(this.namesAndText, this.searchTerm, this.panelCentre);
+		ResultsGetter resultsGetter = new ResultsGetter(this.namesAndText, this.searchTerm);
 		ArrayList<Excerpts> results = resultsGetter.getResults();
 		
 		Displayer displayer = new Displayer(this.panelCentre, results);

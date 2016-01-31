@@ -16,7 +16,7 @@ public class ResultsGetter {
 	private int lineIndex;
 	private HTMLTextWrapper textColourer;
 	
-	public ResultsGetter(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JPanel panelCentre) {
+	public ResultsGetter(HashMap<String, ArrayList<String>> namesAndText, String searchTerm) {
 
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
