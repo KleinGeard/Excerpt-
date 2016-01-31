@@ -3,8 +3,6 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JPanel;
-
 import application.HTMLTextWrapper;
 
 public class ResultsGetter {
@@ -12,18 +10,19 @@ public class ResultsGetter {
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
 	private ArrayList<Excerpts> results;
+	private HTMLTextWrapper textColourer;
 	private int excerptSize;
 	private int lineIndex;
-	private HTMLTextWrapper textColourer;
 	
 	public ResultsGetter(HashMap<String, ArrayList<String>> namesAndText, String searchTerm) {
 
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
 		this.results = new ArrayList<Excerpts>();
+		this.textColourer = new HTMLTextWrapper();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
-		this.textColourer = new HTMLTextWrapper();
+		
 		
 	}
 	
