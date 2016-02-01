@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
@@ -20,11 +21,13 @@ public class SelectFolderListener implements ActionListener {
 	private JFileChooser fileChooser = new JFileChooser();
 	private HashMap<String, ArrayList<String>> fileNamesAndText;
 	private BufferedReader reader;
+	private ButtonEnabler buttonEnabler;
 	
-	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText) {
+	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, ButtonEnabler buttonEnabler) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
+		this.buttonEnabler = buttonEnabler;
 		
 	}
 	
@@ -35,11 +38,15 @@ public class SelectFolderListener implements ActionListener {
 	        @Override
 	        public void run() {
 	        	
+	        	buttonEnabler.disableButtons();
+	        	
 	        	runFileChooser(); 
 	            addContentsToMap();
 	            
 	            directoryLabel.setText(chosenDirectory.toString());
 	        	
+	            buttonEnabler.enableButtons();
+	            
 	        }    
 	        
 	    });

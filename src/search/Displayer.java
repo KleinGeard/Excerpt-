@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import application.ButtonEnabler;
+
 public class Displayer {
 
 	private JPanel panelCentre;

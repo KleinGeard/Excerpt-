@@ -3,6 +3,7 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import application.ButtonEnabler;
 import application.HTMLTextWrapper;
 
 public class ResultsGetter {

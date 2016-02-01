@@ -6,6 +6,8 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import application.ButtonEnabler;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,23 +17,40 @@ public class SearchListener implements ActionListener {
 	private JPanel panelCentre;
 	private JTextField searchField;
 	private String searchTerm;
+	private ButtonEnabler buttonEnabler;
 
-	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panelCentre, JTextField searchField) {
+	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panelCentre,
+			JTextField searchField, ButtonEnabler buttonEnabler) {
 		
 		this.namesAndText = namesAndText;
 		this.panelCentre = panelCentre;
 		this.searchField = searchField;
+		this.buttonEnabler = buttonEnabler;
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		this.searchTerm = this.searchField.getText().toLowerCase();
+		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
+	        @Override
+	        public void run() {
+	        	
+	        	buttonEnabler.disableButtons();
+	        	
+	        	searchTerm = searchField.getText().toLowerCase();
+	    		searchAll();
+	    		searchField.setText("");
+	    		
+	    		buttonEnabler.enableButtons();
+	            
+	        }    
+	        
+	    });
 		
-		this.searchAll();
+		t.start();
 		
-		this.searchField.setText("");
+		
 		
 	}	
 	
