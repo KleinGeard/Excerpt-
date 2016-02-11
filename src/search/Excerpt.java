@@ -18,18 +18,8 @@ public class Excerpt {
 		
 		this.lines.add(line);
 		
-		if (containsMatch) this.numberOfMatches++;
-		
-	}
-	
-	@Override
-	public String toString() {
-		
-		String toString = "";
-		
-		for (String line : this.lines) toString += line + "\n";
-		
-		return toString;
+		if (containsMatch) 
+			this.numberOfMatches++;
 		
 	}
 	
@@ -37,7 +27,8 @@ public class Excerpt {
 		
 		String text = "";
 		
-		for (String line : this.lines) text += line + "\n";
+		for (String line : this.lines) 
+			text += line + "\n";
 		
 		return text;
 		
