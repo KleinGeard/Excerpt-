@@ -1,7 +1,5 @@
 package application;
 
-import java.awt.Color;
-
 public class HTMLTextWrapper {
 	
 	public static final String html = "<html>";

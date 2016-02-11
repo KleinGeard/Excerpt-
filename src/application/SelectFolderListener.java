@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
