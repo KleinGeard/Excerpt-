@@ -56,8 +56,7 @@ public class SearchListener implements ActionListener {
 		
 		this.panelCentre.removeAll();
 		
-		ArrayList<Excerpts> results = this.getResults();
-		this.display(results);
+		this.display(this.getResults());
 		
 		
 	}

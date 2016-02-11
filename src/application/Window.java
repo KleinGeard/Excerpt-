@@ -58,10 +58,12 @@ public class Window {
 	private void initialiseFrame() {
 		
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
 		
 		this.frame = new JFrame();
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setSize(screenSize.width/2,screenSize.height/2);
+		this.frame.setSize(screenWidth / 2, screenHeight / 2);
 		this.frame.setExtendedState(this.frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
 		
 	}
@@ -69,8 +71,8 @@ public class Window {
 	private void initialiseNorthPanel() {
 		
 		this.panelNorth = new JPanel();
-		this.frame.getContentPane().add(this.panelNorth, BorderLayout.NORTH);	
-		this.panelNorth.setLayout(new BorderLayout(0, 0));
+		this.panelNorth.setLayout(new BorderLayout());
+		this.frame.getContentPane().add(this.panelNorth, BorderLayout.NORTH);
 		
 		this.initialiseTopWestPanelComponents();
 		this.initialiseTopEastPanelComponents();
