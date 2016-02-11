@@ -56,7 +56,7 @@ public class SelectFolderListener implements ActionListener {
         
         
 	}
-	
+
 	private void runFileChooser() {
 		
 		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -87,7 +87,6 @@ public class SelectFolderListener implements ActionListener {
 	}
 	
 	private ArrayList<String> getLinesForCurrentFile(File file) {
-		
 		
 		ArrayList<String> lines = new ArrayList<>();
 		this.addLines(file, lines);

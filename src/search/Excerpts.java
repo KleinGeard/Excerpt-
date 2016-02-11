@@ -2,6 +2,7 @@ package search;
 
 import java.util.ArrayList;
 
+import application.Colours;
 import application.HTMLTextWrapper;
 
 public class Excerpts {
@@ -63,10 +64,9 @@ public class Excerpts {
 	}
 	
 	private ArrayList<String> addHeader(ArrayList<String> arrayOfLinesInAllExcerpts) {
-		
-		arrayOfLinesInAllExcerpts.add("<html>" + this.textColourer.wrapInNavyHTML("search term: " + this.searchTerm));
+		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, "search term: " + this.searchTerm));
 		arrayOfLinesInAllExcerpts.add(this.name);
-		arrayOfLinesInAllExcerpts.add("<html>" + this.textColourer.wrapInNavyHTML("matches in this file: " + this.totalNumberOfMatches));	
+		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, "matches in this file: " + this.totalNumberOfMatches));	
 		arrayOfLinesInAllExcerpts = this.addLines(3, arrayOfLinesInAllExcerpts);
 		
 		return arrayOfLinesInAllExcerpts;

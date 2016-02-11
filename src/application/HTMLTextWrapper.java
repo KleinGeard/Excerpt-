@@ -1,29 +1,15 @@
 package application;
 
+import java.awt.Color;
+
 public class HTMLTextWrapper {
-
-	public HTMLTextWrapper() {
-
+	
+	public static final String html = "<html>";
+	
+	public String wrapInColouredHTML(String colour, String string) {
 		
+		return String.format("<font color = %s>%s</font>", colour, string);
 		
-	}
-	
-	public String wrapInNavyHTML(String string) {
-		
-		return String.format("<font color = Navy>%s</font>", string);
-		
-	}
-
-	public String wrapInWhiteHTML(String string) {
-	
-		return String.format("<font color = white>%s</font>", string);
-	
-	}
-
-	public String wrapInRedHTML(String string) {
-	
-		return String.format("<font color = red>%s</font>", string);
-	
 	}
 
 }

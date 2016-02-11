@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import application.ButtonEnabler;
+import application.Colours;
 import application.HTMLTextWrapper;
 
 public class ResultsGetter {
@@ -38,7 +39,7 @@ public class ResultsGetter {
 	private Excerpts getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts excerpts = new Excerpts("<html>" + this.textColourer.wrapInNavyHTML(name), this.searchTerm);
+		Excerpts excerpts = new Excerpts(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
 		
 		this.lineIndex = 0;
 		
@@ -99,7 +100,7 @@ public class ResultsGetter {
 	
 	private String getLineNumber(int lineIndex) {
 		
-		return "<html>" + this.textColourer.wrapInRedHTML(Integer.toString(lineIndex + 1));
+		return HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.red, Integer.toString(lineIndex + 1));
 		
 	}
 	
@@ -110,13 +111,13 @@ public class ResultsGetter {
 		
 		for (int i = 0 ; i < numberOfSpaces ; i++) spaces += "_";
 		
-		return this.textColourer.wrapInWhiteHTML(spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
+		return this.textColourer.wrapInColouredHTML(Colours.white, spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
 		
 	}
 	
 	private String getLineWithHighlightedSearchTerm(String line) {
 		
-		return line.replace(this.searchTerm, this.textColourer.wrapInRedHTML(this.searchTerm));
+		return line.replace(this.searchTerm, this.textColourer.wrapInColouredHTML(Colours.red, this.searchTerm));
 		
 	}
 	
