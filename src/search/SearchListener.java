@@ -50,16 +50,26 @@ public class SearchListener implements ActionListener {
 		
 		t.start();
 		
-		
-		
 	}	
 	
 	public void searchAll() {
 		
 		this.panelCentre.removeAll();
 		
+		ArrayList<Excerpts> results = this.getResults();
+		this.display(results);
+		
+		
+	}
+	
+	private ArrayList<Excerpts> getResults() {
+		
 		ResultsGetter resultsGetter = new ResultsGetter(this.namesAndText, this.searchTerm);
-		ArrayList<Excerpts> results = resultsGetter.getResults();
+		return resultsGetter.getResults();
+		
+	}
+	
+	private void display(ArrayList<Excerpts> results) {
 		
 		Displayer displayer = new Displayer(this.panelCentre, results);
 		displayer.display();

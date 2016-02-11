@@ -29,7 +29,8 @@ public class ResultsGetter {
 	
 	public ArrayList<Excerpts> getResults() {
 		
-		for (String name : this.namesAndText.keySet()) this.results.add(this.getExcerpts(name));
+		for (String name : this.namesAndText.keySet()) 
+			this.results.add(this.getExcerpts(name));
 		
 		return this.results;
 		
@@ -46,7 +47,8 @@ public class ResultsGetter {
 			
 			String line = lines.get(this.lineIndex).toLowerCase();
 			
-			if (line.contains(this.searchTerm)) excerpts.addExcept(this.getExcerpt(lines));
+			if (line.contains(this.searchTerm)) 
+				excerpts.addExcept(this.getExcerpt(lines));
 			
 			this.lineIndex++;
 			
@@ -76,7 +78,8 @@ public class ResultsGetter {
 			boolean containsSearchTerm = line.contains(this.searchTerm);
 			
 			excerpt.addLine(this.getLineToBeAdded(line), containsSearchTerm);
-			if (containsSearchTerm) indexesFromLastMatch = 0;
+			if (containsSearchTerm) 
+				indexesFromLastMatch = 0;
 			
 			indexesFromLastMatch++;
 			this.lineIndex++;
@@ -108,7 +111,8 @@ public class ResultsGetter {
 		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		String spaces = "";
 		
-		for (int i = 0 ; i < numberOfSpaces ; i++) spaces += "_";
+		for (int i = 0 ; i < numberOfSpaces ; i++) 
+			spaces += "_";
 		
 		return this.textColourer.wrapInColouredHTML(Colours.white, spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
 		

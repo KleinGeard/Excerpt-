@@ -77,7 +77,7 @@ public class Displayer {
 				
 				JButton nameButton = new JButton(excerpts.getName() + " / matches: " + excerpts.getNumberOfMatches());
 				
-				NameButtonListener nameButtonListener = new NameButtonListener(excerpts, panelCentreCentre);
+				ResultButtonListener nameButtonListener = new ResultButtonListener(excerpts, panelCentreCentre);
 				nameButton.addActionListener(nameButtonListener);
 				
 				panelCentreScroller.add(nameButton);

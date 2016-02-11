@@ -61,10 +61,8 @@ public class SelectFolderListener implements ActionListener {
 		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = this.fileChooser.showOpenDialog(null);
 
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
+        if (returnValue == JFileChooser.APPROVE_OPTION)
             this.chosenDirectory = this.fileChooser.getSelectedFile();
-
-        }
 		
 	}
 	
@@ -72,16 +70,16 @@ public class SelectFolderListener implements ActionListener {
 		
 		this.fileNamesAndText.clear();
 		
-		for (File file : this.chosenDirectory.listFiles()) {
-			
-			if (file.toString().contains(".txt")) {
-				
-				this.directoryLabel.setText("loading " + file.getName());
-				this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
-				
-			}
-			
-		}
+		for (File file : this.chosenDirectory.listFiles())
+			if (file.toString().contains(".txt")) 
+				this.addContent(file);
+		
+	}
+	
+	public void addContent(File file) {
+		
+		this.directoryLabel.setText("loading " + file.getName());
+		this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
 		
 	}
 	
@@ -102,7 +100,8 @@ public class SelectFolderListener implements ActionListener {
 			
 			this.reader = new BufferedReader(new FileReader(file));
 			
-			while((line = this.reader.readLine()) != null) lines.add(line);
+			while((line = this.reader.readLine()) != null) 
+				lines.add(line);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -22,21 +22,15 @@ public class ButtonEnabler {
 	
 	public void disableButtons() {
 		
-		for (JButton button : this.buttons) {
-			
+		for (JButton button : this.buttons)
 			button.setEnabled(false);
-			
-		}
 		
 	}
 	
 	public void enableButtons() {
 		
-		for (JButton button : this.buttons) {
-			
+		for (JButton button : this.buttons)
 			button.setEnabled(true);
-			
-		}
 		
 	}
 	
