@@ -8,18 +8,18 @@ import application.HTMLTextWrapper;
 public class Excerpts {
 
 	private String name;
+	private String searchTerm;
 	private ArrayList<Excerpt> excerpts;
 	private int totalNumberOfMatches;
 	private HTMLTextWrapper textColourer;
-	private String searchTerm;
 	
 	public Excerpts(String name, String searchTerm) {
 		
 		this.name = name;
+		this.searchTerm = searchTerm;
 		this.excerpts = new ArrayList<>();
 		this.totalNumberOfMatches = 0;
 		this.textColourer = new HTMLTextWrapper();
-		this.searchTerm = searchTerm;
 		
 	}
 	
@@ -32,6 +32,7 @@ public class Excerpts {
 	public int getNumberOfMatches() {
 		
 		return this.totalNumberOfMatches;	
+		
 	}
 	
 	public void addExcept(Excerpt excerpt) {
@@ -41,19 +42,8 @@ public class Excerpts {
 		
 	}
 	
-	@Override
-	public String toString() {
+	public ArrayList<String> getDisplayableArray() {
 		
-		String text = "";
-		
-		for (String line : this.getArrayOfLinesInAllExcerpts()) text += line + "\n";
-		
-		return text;
-		
-	}
-	
-	public ArrayList<String> getArrayOfLinesInAllExcerpts() { //the lines that displayed on the screen using JList	
-															  //TODO think of a better name
 		ArrayList<String> arrayOfLinesInAllExcerpts = new ArrayList<>();
 		
 		arrayOfLinesInAllExcerpts = this.addHeader(arrayOfLinesInAllExcerpts);
@@ -64,6 +54,7 @@ public class Excerpts {
 	}
 	
 	private ArrayList<String> addHeader(ArrayList<String> arrayOfLinesInAllExcerpts) {
+		
 		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, "search term: " + this.searchTerm));
 		arrayOfLinesInAllExcerpts.add(this.name);
 		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, "matches in this file: " + this.totalNumberOfMatches));	
@@ -88,12 +79,9 @@ public class Excerpts {
 	
 	private ArrayList<String> addLines(int numberOfNewLines, ArrayList<String> arrayOfLinesInAllExcerpts) {
 		
-		for (int i = 0 ; i < numberOfNewLines ; i++) {
-			
+		for (int i = 0 ; i < numberOfNewLines ; i++) 
 			arrayOfLinesInAllExcerpts.add("   ");
 			
-		}
-		
 		return arrayOfLinesInAllExcerpts;
 		
 	}

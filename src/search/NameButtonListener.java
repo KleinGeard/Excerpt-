@@ -26,7 +26,7 @@ public class NameButtonListener implements ActionListener {
 		this.panelCentreCentre.removeAll();
 		
 		@SuppressWarnings({ "rawtypes", "unchecked" })
-		JScrollPane resultScroller = new JScrollPane(new JList(excerpts.getArrayOfLinesInAllExcerpts().toArray()));
+		JScrollPane resultScroller = new JScrollPane(new JList(excerpts.getDisplayableArray().toArray()));
 		resultScroller.getVerticalScrollBar().setUnitIncrement(40);
 		resultScroller.setPreferredSize(new Dimension(this.panelCentreCentre.getWidth(), 58));
 		
