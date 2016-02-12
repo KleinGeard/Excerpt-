@@ -4,6 +4,7 @@ package application;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -63,6 +64,7 @@ public class Window {
 		
 		this.frame = new JFrame("Ecerpter");
 		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/icons/excerpter icon 3.png")));
+		
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setSize(screenWidth / 2, screenHeight / 2);
 		this.frame.setExtendedState(this.frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
