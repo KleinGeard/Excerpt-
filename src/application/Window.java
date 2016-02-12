@@ -63,11 +63,10 @@ public class Window {
 		int screenHeight = screenSize.height;
 		
 		this.frame = new JFrame("Ecerpter");
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/icons/excerpter icon 3.png")));
-		
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setSize(screenWidth / 2, screenHeight / 2);
 		this.frame.setExtendedState(this.frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );
+		this.frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/icons/excerpter icon 3.png")));
 		
 	}
 	
