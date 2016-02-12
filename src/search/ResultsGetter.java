@@ -108,13 +108,13 @@ public class ResultsGetter {
 	
 	private String getSpaces(int lineIndex) {
 		
-		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
+		int numberOfSpaces = 10 - ("" + (lineIndex + 1)).length();
 		String spaces = "";
 		
 		for (int i = 0 ; i < numberOfSpaces ; i++) 
-			spaces += "_";
+			spaces += " "; //this character is [ALT-255] it is NOT a whitespace
 		
-		return this.textColourer.wrapInColouredHTML(Colours.white, spaces); //So that the underscores are invisible. JLists do not preserve whitespace.
+		return spaces;
 		
 	}
 	
