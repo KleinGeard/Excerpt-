@@ -108,14 +108,13 @@ public class ResultsGetter {
 	
 	private String getSpaces(int lineIndex) {
 		
-		int numberOfSpaces = 10 - ("" + (lineIndex + 1)).length();
+		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		String spaces = "";
 		
 		for (int i = 0 ; i < numberOfSpaces ; i++) 
-			spaces += " "; //this character is [ALT-255] it is NOT a whitespace
+			spaces += "â€€"; //this character is [U-2000] it is NOT a regular whitespace
 		
 		return spaces;
-		
 	}
 	
 	private String getLineWithHighlightedSearchTerm(String line) {
