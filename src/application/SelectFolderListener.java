@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
@@ -16,17 +17,22 @@ import java.awt.event.ActionListener;
 public class SelectFolderListener implements ActionListener {
 
 	private JLabel directoryLabel;
-	private File chosenDirectory;
-	private JFileChooser fileChooser = new JFileChooser();
 	private HashMap<String, ArrayList<String>> fileNamesAndText;
-	private BufferedReader reader;
 	private ButtonEnabler buttonEnabler;
+	private JFrame frame;
+	private JFileChooser fileChooser = new JFileChooser();
+	private File chosenDirectory;
 	
-	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, ButtonEnabler buttonEnabler) {
+	private BufferedReader reader;
+	
+	
+	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
+			ButtonEnabler buttonEnabler, JFrame frame) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
 		this.buttonEnabler = buttonEnabler;
+		this.frame = frame;
 		
 	}
 	
@@ -42,8 +48,8 @@ public class SelectFolderListener implements ActionListener {
 	        	runFileChooser(); 
 	            addContentsToMap();
 	            
-	            directoryLabel.setText(chosenDirectory.toString());
-	        	
+	        	displayFileName();
+	            
 	            buttonEnabler.enableButtons();
 	            
 	        }    
@@ -106,6 +112,15 @@ public class SelectFolderListener implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	private void displayFileName() {
+		
+		String directoryString = this.chosenDirectory.toString();
+		
+		directoryLabel.setText(directoryString);
+		frame.setTitle("Excerpter - " + directoryString.substring(directoryString.lastIndexOf("\\") + 1));
 		
 	}
 	

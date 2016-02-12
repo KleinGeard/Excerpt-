@@ -121,7 +121,7 @@ public class Window {
 	private void addActionListeners() {
 		
 		SelectFolderListener selectDirectoryFolderListener = new SelectFolderListener(this.directoryLabel,
-				this.namesAndText, this.buttonEnabler);
+				this.namesAndText, this.buttonEnabler, this.frame);
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
 		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, 
