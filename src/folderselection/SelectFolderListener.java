@@ -1,11 +1,8 @@
 package folderselection;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
@@ -27,7 +24,6 @@ public class SelectFolderListener implements ActionListener {
 	private JFrame frame;
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
-	private BufferedReader reader;
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	

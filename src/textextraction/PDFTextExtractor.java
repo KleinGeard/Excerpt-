@@ -37,7 +37,6 @@ public class PDFTextExtractor {
 		this.initialisePDFBoxDocs(file);
 		
 		String textFromPDF = this.getTextFromPDFFile();
-		
 		this.closeDocs();
 		
 		return new ArrayList<>(Arrays.asList(textFromPDF.split("\n")));
@@ -73,12 +72,10 @@ public class PDFTextExtractor {
 		
 		try {
    			
-   			if (this.cosDoc != null) {
+   			if (this.cosDoc != null)
                 this.cosDoc.close();
-            }
-   			if (this.pdDoc != null) {
+   			if (this.pdDoc != null)
    				this.pdDoc.close();
-   			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
