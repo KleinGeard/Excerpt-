@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
@@ -24,9 +25,8 @@ public class SelectFolderListener implements ActionListener {
 	private JFrame frame;
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
-	
 	private BufferedReader reader;
-	
+	PDFTextExtractor pdfTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
 			ButtonEnabler buttonEnabler, JFrame frame) {
@@ -35,6 +35,7 @@ public class SelectFolderListener implements ActionListener {
 		this.fileNamesAndText = namesAndText;
 		this.buttonEnabler = buttonEnabler;
 		this.frame = frame;
+		this.pdfTextExtractor = new PDFTextExtractor();
 		
 	}
 	
@@ -79,15 +80,25 @@ public class SelectFolderListener implements ActionListener {
 		this.fileNamesAndText.clear();
 		
 		for (File file : this.chosenDirectory.listFiles())
-			if (file.toString().contains(".txt")) 
-				this.addContent(file);
+			//if (file.toString().contains(".txt")) 
+			this.addContent(file);
 		
 	}
 	
 	public void addContent(File file) {
+		String fileName = file.toString();
 		
 		this.directoryLabel.setText("loading " + file.getName());
-		this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
+		if (fileName.contains(".txt")) {
+			
+			this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
+			
+		} else if (fileName.contains(".pdf")) {
+			
+			ArrayList<String> lines = new ArrayList<>(Arrays.asList(this.pdfTextExtractor.getTextFromPDF(file).split("\n")));
+			this.fileNamesAndText.put(file.getName(), lines);
+			
+		}
 		
 	}
 	
