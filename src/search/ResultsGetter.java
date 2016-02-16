@@ -3,8 +3,8 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import application.Colours;
-import application.HTMLTextWrapper;
+import utilities.Colours;
+import utilities.HTMLTextWrapper;
 
 public class ResultsGetter {
 

@@ -1,4 +1,4 @@
-package application;
+package utilities;
 
 public final class Colours {
 

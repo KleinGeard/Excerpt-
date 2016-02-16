@@ -2,8 +2,8 @@ package search;
 
 import java.util.ArrayList;
 
-import application.Colours;
-import application.HTMLTextWrapper;
+import utilities.Colours;
+import utilities.HTMLTextWrapper;
 
 public class Excerpts {
 
