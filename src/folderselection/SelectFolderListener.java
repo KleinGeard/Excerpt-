@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import application.ButtonEnabler;
+import textextraction.PDFTextExtractor;
+import textextraction.TXTTextExtractor;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

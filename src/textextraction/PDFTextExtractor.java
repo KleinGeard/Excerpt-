@@ -1,4 +1,4 @@
-package folderselection;
+package textextraction;
 
 import java.io.File;
 import java.io.IOException;
