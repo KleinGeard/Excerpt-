@@ -26,7 +26,8 @@ public class SelectFolderListener implements ActionListener {
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
 	private BufferedReader reader;
-	PDFTextExtractor pdfTextExtractor;
+	private PDFTextExtractor pdfTextExtractor;
+	private TXTTextExtractor txtTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
 			ButtonEnabler buttonEnabler, JFrame frame) {
@@ -36,6 +37,7 @@ public class SelectFolderListener implements ActionListener {
 		this.buttonEnabler = buttonEnabler;
 		this.frame = frame;
 		this.pdfTextExtractor = new PDFTextExtractor();
+		this.txtTextExtractor = new TXTTextExtractor();
 		
 	}
 	
@@ -89,42 +91,10 @@ public class SelectFolderListener implements ActionListener {
 		String fileName = file.toString();
 		
 		this.directoryLabel.setText("loading " + file.getName());
-		if (fileName.contains(".txt")) {
-			
-			this.fileNamesAndText.put(file.getName(), this.getLinesForCurrentFile(file));
-			
-		} else if (fileName.contains(".pdf")) {
-			
-			ArrayList<String> lines = new ArrayList<>(Arrays.asList(this.pdfTextExtractor.getTextFromPDF(file).split("\n")));
-			this.fileNamesAndText.put(file.getName(), lines);
-			
-		}
-		
-	}
-	
-	private ArrayList<String> getLinesForCurrentFile(File file) {
-		
-		ArrayList<String> lines = new ArrayList<>();
-		this.addLines(file, lines);
-		
-		return lines;
-		
-	}
-	
-	private void addLines(File file, ArrayList<String> lines) {
-		
-		String line;
-		
-		try {
-			
-			this.reader = new BufferedReader(new FileReader(file));
-			
-			while((line = this.reader.readLine()) != null) 
-				lines.add(line);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if (fileName.contains(".pdf"))
+			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getTextFromPDFFile(file));
+		else if (fileName.contains(".txt")) 
+			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getTextFromTXTFile(file));
 		
 	}
 	

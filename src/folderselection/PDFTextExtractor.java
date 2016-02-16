@@ -2,6 +2,8 @@ package folderselection;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.apache.pdfbox.cos.COSDocument;
 import org.apache.pdfbox.io.RandomAccessBufferedFileInputStream;
@@ -30,7 +32,7 @@ public class PDFTextExtractor {
 		
 	}
 	
-	public String getTextFromPDF(File file) {
+	public ArrayList<String> getTextFromPDFFile(File file) {
 		
 		this.initialisePDFBoxDocs(file);
 		
@@ -38,7 +40,7 @@ public class PDFTextExtractor {
 		
 		this.closeDocs();
 		
-		return textFromPDF;
+		return new ArrayList<>(Arrays.asList(textFromPDF.split("\n")));
 	}
 	
 	private void initialisePDFBoxDocs(File file) {
