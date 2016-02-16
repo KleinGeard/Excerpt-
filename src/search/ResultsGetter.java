@@ -57,7 +57,7 @@ public class ResultsGetter {
 		return excerpts;
 		
 	}
-	
+
 	private Excerpt getExcerpt(ArrayList<String> lines) {
 		
 		Excerpt excerpt = new Excerpt();
@@ -108,11 +108,11 @@ public class ResultsGetter {
 	
 	private String getSpaces(int lineIndex) {
 		
-		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		String spaces = "";
+		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		
 		for (int i = 0 ; i < numberOfSpaces ; i++) 
-			spaces += " "; //this character is [U-2000] it is NOT a regular whitespace
+			spaces += " "; //this character is [U-2000] it is NOT a regular space
 		
 		return spaces;
 	}
