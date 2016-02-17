@@ -1,7 +1,7 @@
 package folderselection;
 
 import java.io.File;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,7 +9,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import org.apache.tika.exception.TikaException;
+import org.xml.sax.SAXException;
+
 import application.ButtonEnabler;
+import textextraction.DOCTextExtractor;
 import textextraction.PDFTextExtractor;
 import textextraction.TXTTextExtractor;
 
@@ -26,6 +30,7 @@ public class SelectFolderListener implements ActionListener {
 	private File chosenDirectory;
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
+	private DOCTextExtractor docTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
 			ButtonEnabler buttonEnabler, JFrame frame) {
@@ -36,6 +41,7 @@ public class SelectFolderListener implements ActionListener {
 		this.frame = frame;
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
+		this.docTextExtractor = new DOCTextExtractor();
 		
 	}
 	
@@ -93,6 +99,20 @@ public class SelectFolderListener implements ActionListener {
 			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getTextFromPDFFile(file));
 		else if (fileName.contains(".txt")) 
 			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getTextFromTXTFile(file));
+		else if (fileName.contains(".doc")){
+			try {
+				this.docTextExtractor.getTextFromDocFile(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (TikaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
