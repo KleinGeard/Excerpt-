@@ -4,15 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStream;
 
-import org.apache.tika.exception.TikaException;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.parser.AutoDetectParser;
-import org.apache.tika.parser.CompositeParser;
-import org.apache.tika.parser.ParseContext;
-import org.apache.tika.sax.BodyContentHandler;
-import org.xml.sax.SAXException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.apache.poi.hwpf.extractor.Word6Extractor;
 
 public class DOCTextExtractor {
 
@@ -20,10 +17,34 @@ public class DOCTextExtractor {
 		
 	}
 	
-	public void getTextFromDocFile(File file) throws IOException, SAXException, TikaException {
+	public ArrayList<String> getTextFromDocFile(File file) {
 		
+		return new ArrayList<String>(Arrays.asList(this.parseToPlainText(file).split("\n")));
 		
-	   
+	}
+	
+	public String parseToPlainText(File file) {
+		
+		String text = "";
+		
+	    try {
+	    	
+			InputStream stream = new FileInputStream(file);
+			Word6Extractor extractor = new Word6Extractor(stream);
+			
+			text = extractor.getText();
+			
+			extractor.close();
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    
+	    return text;
+	    
 	}
 
+	
 }

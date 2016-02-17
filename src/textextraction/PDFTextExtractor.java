@@ -39,7 +39,7 @@ public class PDFTextExtractor {
 		String textFromPDF = this.getTextFromPDFFile();
 		this.closeDocs();
 		
-		return new ArrayList<>(Arrays.asList(textFromPDF.split("\n")));
+		return new ArrayList<String>(Arrays.asList(textFromPDF.split("\n")));
 	}
 	
 	private void initialisePDFBoxDocs(File file) {

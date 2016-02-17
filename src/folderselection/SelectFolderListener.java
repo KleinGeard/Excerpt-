@@ -9,9 +9,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import org.apache.tika.exception.TikaException;
-import org.xml.sax.SAXException;
-
 import application.ButtonEnabler;
 import textextraction.DOCTextExtractor;
 import textextraction.PDFTextExtractor;
@@ -92,6 +89,7 @@ public class SelectFolderListener implements ActionListener {
 	}
 	
 	public void addContent(File file) {
+		
 		String fileName = file.toString();
 		
 		this.directoryLabel.setText("loading " + file.getName());
@@ -99,20 +97,8 @@ public class SelectFolderListener implements ActionListener {
 			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getTextFromPDFFile(file));
 		else if (fileName.contains(".txt")) 
 			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getTextFromTXTFile(file));
-		else if (fileName.contains(".doc")){
-			try {
-				this.docTextExtractor.getTextFromDocFile(file);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SAXException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (TikaException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		else if (fileName.contains(".doc"))
+			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getTextFromDocFile(file));
 		
 	}
 	
