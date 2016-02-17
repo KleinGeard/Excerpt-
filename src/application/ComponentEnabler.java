@@ -2,7 +2,6 @@ package application;
 
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
 
 public class ComponentEnabler {
