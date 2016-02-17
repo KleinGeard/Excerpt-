@@ -35,7 +35,7 @@ public class Window {
 	private JButton btnSelectDirectory;
 	private JLabel directoryLabel;
 	private HashMap<String, ArrayList<String>> namesAndText = new HashMap<>();
-	private ButtonEnabler buttonEnabler = new ButtonEnabler();
+	private ComponentEnabler buttonEnabler = new ComponentEnabler();
 
 	public void initialize() {
 
@@ -90,7 +90,7 @@ public class Window {
 			
 		this.btnSelectDirectory = new JButton("Select Directory");
 		this.panelNorthWest.add(this.btnSelectDirectory);
-		this.buttonEnabler.addButton(this.btnSelectDirectory);
+		this.buttonEnabler.addComponent(this.btnSelectDirectory);
 		
 		this.directoryLabel = new JLabel();
 		this.panelNorthWest.add(this.directoryLabel);
@@ -105,10 +105,11 @@ public class Window {
 		this.searchField = new JTextField();
 		this.searchField.setColumns(10);
 		this.panelNorthEast.add(this.searchField);
+		this.buttonEnabler.addComponent(this.searchField);
 		
 		this.btnSearch = new JButton("Search");
 		this.panelNorthEast.add(this.btnSearch);
-		this.buttonEnabler.addButton(this.btnSearch);
+		this.buttonEnabler.addComponent(this.btnSearch);
 		
 	}
 	
@@ -125,7 +126,7 @@ public class Window {
 	private void addActionListeners() {
 		
 		SelectFolderListener selectDirectoryFolderListener = new SelectFolderListener(this.directoryLabel,
-				this.namesAndText, this.buttonEnabler, this.frame);
+				this.namesAndText, this.buttonEnabler, this.searchField, this.frame);
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
 		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, 

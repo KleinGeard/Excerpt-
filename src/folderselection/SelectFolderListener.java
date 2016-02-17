@@ -8,8 +8,9 @@ import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
-import application.ButtonEnabler;
+import application.ComponentEnabler;
 import textextraction.DOCTextExtractor;
 import textextraction.PDFTextExtractor;
 import textextraction.TXTTextExtractor;
@@ -21,20 +22,22 @@ public class SelectFolderListener implements ActionListener {
 
 	private JLabel directoryLabel;
 	private HashMap<String, ArrayList<String>> fileNamesAndText;
-	private ButtonEnabler buttonEnabler;
+	private ComponentEnabler buttonEnabler;
 	private JFrame frame;
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
+	private JTextField searchField;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
-			ButtonEnabler buttonEnabler, JFrame frame) {
+			ComponentEnabler buttonEnabler, JTextField searchField, JFrame frame) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
 		this.buttonEnabler = buttonEnabler;
+		this.searchField = searchField;
 		this.frame = frame;
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
@@ -49,14 +52,14 @@ public class SelectFolderListener implements ActionListener {
 	        @Override
 	        public void run() {
 	        	
-	        	buttonEnabler.disableButtons();
+	        	buttonEnabler.disableComponents();
 	        	
 	        	runFileChooser(); 
 	            addContentsToMap();
 	            
 	        	displayFileName();
 	            
-	            buttonEnabler.enableButtons();
+	        	buttonEnabler.enableComponents();
 	            
 	        }    
 	        

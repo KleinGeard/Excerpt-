@@ -6,7 +6,7 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import application.ButtonEnabler;
+import application.ComponentEnabler;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +17,10 @@ public class SearchListener implements ActionListener {
 	private JPanel panelCentre;
 	private JTextField searchField;
 	private String searchTerm;
-	private ButtonEnabler buttonEnabler;
+	private ComponentEnabler buttonEnabler;
 
 	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panelCentre,
-			JTextField searchField, ButtonEnabler buttonEnabler) {
+			JTextField searchField, ComponentEnabler buttonEnabler) {
 		
 		this.namesAndText = namesAndText;
 		this.panelCentre = panelCentre;
@@ -36,13 +36,13 @@ public class SearchListener implements ActionListener {
 	        @Override
 	        public void run() {
 	        	
-	        	buttonEnabler.disableButtons();
+	        	buttonEnabler.disableComponents();
 	        	
 	        	searchTerm = searchField.getText().toLowerCase();
 	    		searchAll();
 	    		searchField.setText("");
 	    		
-	    		buttonEnabler.enableButtons();
+	    		buttonEnabler.enableComponents();
 	            
 	        }    
 	        
