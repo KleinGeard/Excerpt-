@@ -1,14 +1,12 @@
 package folderselection;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import application.ComponentEnabler;
 import textextraction.DOCTextExtractor;
@@ -29,15 +27,13 @@ public class SelectFolderListener implements ActionListener {
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
-	private JTextField searchField;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
-			ComponentEnabler buttonEnabler, JTextField searchField, JFrame frame) {
+			ComponentEnabler buttonEnabler, JFrame frame) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
 		this.buttonEnabler = buttonEnabler;
-		this.searchField = searchField;
 		this.frame = frame;
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
