@@ -24,7 +24,6 @@ public class Searcher {
 		this.excerptSize = 7;
 		this.lineIndex = 0;
 		
-		
 	}
 	
 	public ArrayList<Excerpts> getResults() {

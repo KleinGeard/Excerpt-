@@ -44,6 +44,7 @@ public class Window {
 		this.initialiseNorthPanel();
 		this.initialiseCentrePanel();
 		this.addActionListeners();
+		this.addMnemonics();
 		this.frame.setVisible(true);
 		this.btnSelectDirectory.requestFocus();
 		
@@ -134,6 +135,13 @@ public class Window {
 				this.searchField, this.buttonEnabler);
 		this.btnSearch.addActionListener(searchListener);
 		this.searchField.addActionListener(searchListener);
+		
+	}
+	
+	private void addMnemonics() {
+		
+		this.btnSearch.setMnemonic('S');
+		this.btnSelectDirectory.setMnemonic('D');
 		
 	}
 

@@ -1,6 +1,6 @@
 package utilities;
 
-public class HTMLTextWrapper {
+public final class HTMLTextWrapper {
 	
 	public static final String html = "<html>";
 	
