@@ -44,8 +44,9 @@ public class Window {
 		this.initialiseNorthPanel();
 		this.initialiseCentrePanel();
 		this.addActionListeners();
-		frame.setVisible(true);
-
+		this.frame.setVisible(true);
+		this.btnSelectDirectory.requestFocus();
+		
 	}
 	
 	private void addTheme() {
@@ -78,12 +79,12 @@ public class Window {
 		this.panelNorth.setLayout(new BorderLayout());
 		this.frame.getContentPane().add(this.panelNorth, BorderLayout.NORTH);
 		
-		this.initialiseTopWestPanelComponents();
-		this.initialiseTopEastPanelComponents();
+		this.initialiseNorthWestPanelComponents();
+		this.initialiseNorthEastPanelComponents();
 		
 	}
 	
-	private void initialiseTopWestPanelComponents() {
+	private void initialiseNorthWestPanelComponents() {
 		
 		this.panelNorthWest = new JPanel();
 		this.panelNorth.add(this.panelNorthWest, BorderLayout.WEST);
@@ -97,7 +98,7 @@ public class Window {
 		
 	}
 	
-	private void initialiseTopEastPanelComponents() {
+	private void initialiseNorthEastPanelComponents() {
 		
 		this.panelNorthEast = new JPanel();
 		this.panelNorth.add(this.panelNorthEast, BorderLayout.EAST);
@@ -126,7 +127,7 @@ public class Window {
 	private void addActionListeners() {
 		
 		SelectFolderListener selectDirectoryFolderListener = new SelectFolderListener(this.directoryLabel,
-				this.namesAndText, this.buttonEnabler, this.frame);
+				this.namesAndText, this.buttonEnabler, this.frame, this.searchField);
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
 		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, 

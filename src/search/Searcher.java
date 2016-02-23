@@ -6,7 +6,7 @@ import java.util.HashMap;
 import utilities.Colours;
 import utilities.HTMLTextWrapper;
 
-public class ResultsGetter {
+public class Searcher {
 
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
@@ -15,7 +15,7 @@ public class ResultsGetter {
 	private int excerptSize;
 	private int lineIndex;
 	
-	public ResultsGetter(HashMap<String, ArrayList<String>> namesAndText, String searchTerm) {
+	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm) {
 
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;

@@ -9,16 +9,19 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class Displayer {
 
 	private JPanel panelCentre;
 	private ArrayList<Excerpts> results;
+	private JTextField searchField;
 	
-	public Displayer(JPanel panelCentre, ArrayList<Excerpts> results) {
+	public Displayer(JPanel panelCentre, ArrayList<Excerpts> results, JTextField searchField) {
 		
 		this.panelCentre = panelCentre;
 		this.results = results;
+		this.searchField = searchField;
 		
 	}
 	
@@ -77,7 +80,7 @@ public class Displayer {
 				
 				JButton nameButton = new JButton(excerpts.getName() + " / matches: " + excerpts.getNumberOfMatches());
 				
-				ResultButtonListener nameButtonListener = new ResultButtonListener(excerpts, panelCentreCentre);
+				ResultButtonListener nameButtonListener = new ResultButtonListener(excerpts, panelCentreCentre, this.searchField);
 				nameButton.addActionListener(nameButtonListener);
 				
 				panelCentreScroller.add(nameButton);

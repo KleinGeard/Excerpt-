@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 import application.ComponentEnabler;
 import textextraction.DOCTextExtractor;
@@ -22,6 +23,7 @@ public class SelectFolderListener implements ActionListener {
 	private HashMap<String, ArrayList<String>> fileNamesAndText;
 	private ComponentEnabler buttonEnabler;
 	private JFrame frame;
+	private JTextField searchField;
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
 	private PDFTextExtractor pdfTextExtractor;
@@ -29,12 +31,13 @@ public class SelectFolderListener implements ActionListener {
 	private DOCTextExtractor docTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
-			ComponentEnabler buttonEnabler, JFrame frame) {
+			ComponentEnabler componentEnabler, JFrame frame, JTextField searchField) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
-		this.buttonEnabler = buttonEnabler;
+		this.buttonEnabler = componentEnabler;
 		this.frame = frame;
+		this.searchField = searchField;
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
 		this.docTextExtractor = new DOCTextExtractor();
@@ -44,18 +47,16 @@ public class SelectFolderListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		this.buttonEnabler.disableComponents();
+		
 		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
 	        @Override
 	        public void run() {
-	        	
-	        	buttonEnabler.disableComponents();
 	        	
 	        	runFileChooser(); 
 	            addContentsToMap();
 	            
 	        	displayFileName();
-	            
-	        	buttonEnabler.enableComponents();
 	            
 	        }    
 	        
@@ -63,8 +64,9 @@ public class SelectFolderListener implements ActionListener {
 		
 		t.start();
 		
-        
-        
+		this.buttonEnabler.enableComponents();
+		this.searchField.requestFocus();
+		
 	}
 
 	private void runFileChooser() {

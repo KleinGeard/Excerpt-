@@ -7,16 +7,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 public class ResultButtonListener implements ActionListener {
 
 	private Excerpts excerpts;
 	private JPanel panelCentreCentre;
+	private JTextField searchField;
 	
-	public ResultButtonListener(Excerpts excerpts, JPanel panelCentreCentre) {
+	public ResultButtonListener(Excerpts excerpts, JPanel panelCentreCentre, JTextField searchField) {
 
 		this.excerpts = excerpts;
 		this.panelCentreCentre = panelCentreCentre;
+		this.searchField = searchField;
 		
 	}
 
@@ -30,6 +33,8 @@ public class ResultButtonListener implements ActionListener {
 		
 		this.panelCentreCentre.repaint();
 		this.panelCentreCentre.revalidate();
+		
+		this.searchField.requestFocus();
 		
 	}
 	

@@ -32,45 +32,45 @@ public class SearchListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		this.buttonEnabler.disableComponents();
+		
+		this.searchTerm = searchField.getText().toLowerCase();
+		this.searchAll();
+		
+		this.searchField.setText("");
+		this.buttonEnabler.enableComponents();
+		this.searchField.requestFocus();
+		
+	}
+	
+	private void searchAll() {
+		
 		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
 	        @Override
 	        public void run() {
 	        	
-	        	buttonEnabler.disableComponents();
-	        	
-	        	searchTerm = searchField.getText().toLowerCase();
-	    		searchAll();
-	    		searchField.setText("");
+	        	panelCentre.removeAll();
 	    		
-	    		buttonEnabler.enableComponents();
-	            
+	    		display(getResults());
+	    		
 	        }    
 	        
 	    });
 		
 		t.start();
 		
-	}	
-	
-	public void searchAll() {
-		
-		this.panelCentre.removeAll();
-		
-		this.display(this.getResults());
-		
-		
 	}
 	
 	private ArrayList<Excerpts> getResults() {
 		
-		ResultsGetter resultsGetter = new ResultsGetter(this.namesAndText, this.searchTerm);
-		return resultsGetter.getResults();
+		Searcher searcher = new Searcher(this.namesAndText, this.searchTerm);
+		return searcher.getResults();
 		
 	}
 	
 	private void display(ArrayList<Excerpts> results) {
 		
-		Displayer displayer = new Displayer(this.panelCentre, results);
+		Displayer displayer = new Displayer(this.panelCentre, results, this.searchField);
 		displayer.display();
 		
 	}
