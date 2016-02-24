@@ -47,25 +47,27 @@ public class SelectFolderListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		this.buttonEnabler.disableComponents();
+		
 		
 		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
 	        @Override
 	        public void run() {
+	        	
+	        	buttonEnabler.disableComponents();
 	        	
 	        	runFileChooser(); 
 	            addContentsToMap();
 	            
 	        	displayFileName();
 	            
+	        	buttonEnabler.enableComponents();
+	        	searchField.requestFocus();
+	        	
 	        }    
 	        
 	    });
 		
 		t.start();
-		
-		this.buttonEnabler.enableComponents();
-		this.searchField.requestFocus();
 		
 	}
 

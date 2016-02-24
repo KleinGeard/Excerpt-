@@ -105,7 +105,7 @@ public class Window {
 		this.panelNorth.add(this.panelNorthEast, BorderLayout.EAST);
 		
 		this.searchField = new JTextField();
-		this.searchField.setColumns(10);
+		this.searchField.setColumns(20);
 		this.panelNorthEast.add(this.searchField);
 		this.buttonEnabler.addComponent(this.searchField);
 		
