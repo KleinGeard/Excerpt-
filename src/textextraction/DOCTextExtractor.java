@@ -22,7 +22,7 @@ public class DOCTextExtractor {
 		
 	}
 	
-	public String parseToPlainText(File file) {
+	private String parseToPlainText(File file) {
 		
 	    String text = this.getWord6or95(file);
 	    

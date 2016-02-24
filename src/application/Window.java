@@ -21,8 +21,6 @@ import java.awt.Color;
 
 import search.SearchListener;
 
-
-
 public class Window {
 
 	private JFrame frame;

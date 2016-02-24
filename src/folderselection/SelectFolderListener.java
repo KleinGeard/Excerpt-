@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import application.ComponentEnabler;
 import textextraction.DOCTextExtractor;
+import textextraction.DOCXTextExtractor;
 import textextraction.PDFTextExtractor;
 import textextraction.TXTTextExtractor;
 
@@ -29,6 +30,7 @@ public class SelectFolderListener implements ActionListener {
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
+	private DOCXTextExtractor docxTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
 			ComponentEnabler componentEnabler, JFrame frame, JTextField searchField) {
@@ -41,14 +43,13 @@ public class SelectFolderListener implements ActionListener {
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
 		this.docTextExtractor = new DOCTextExtractor();
+		this.docxTextExtractor = new DOCXTextExtractor();
 		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		
-		
 		Thread t = new Thread(new Runnable() { //enables directoryLabel to change while files are loading
 	        @Override
 	        public void run() {
@@ -86,7 +87,6 @@ public class SelectFolderListener implements ActionListener {
 		this.fileNamesAndText.clear();
 		
 		for (File file : this.chosenDirectory.listFiles())
-			//if (file.toString().contains(".txt")) 
 			this.addContent(file);
 		
 	}
@@ -94,14 +94,19 @@ public class SelectFolderListener implements ActionListener {
 	public void addContent(File file) {
 		
 		String fileName = file.toString();
+		String fileType = fileName.substring(fileName.lastIndexOf('.'));
 		
 		this.directoryLabel.setText("loading " + file.getName());
-		if (fileName.contains(".pdf"))
+		if (fileType.equals(".pdf"))
 			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getTextFromPDFFile(file));
-		else if (fileName.contains(".txt")) 
+		else if (fileType.equals(".txt")) 
 			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getTextFromTXTFile(file));
-		else if (fileName.contains(".doc"))
+		else if (fileType.equals(".doc"))
 			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getTextFromDocFile(file));
+		else if (fileType.equals(".docx")) 
+			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getTextFromDocxFile(file));
+		
+		System.out.println(fileType);
 		
 	}
 	
