@@ -1,9 +1,16 @@
 # Excerpter
 A research tool used to get excerpts from a directory of files whether they be scientific journals or religious texts.
 
-This program currently searches through .txt, .pdf and .doc (6 and 95) files.
+This program currently searches through the following file types:
 
-This program uses the flowing libraries:
+• .txt
+• .pdf
+• .doc (6, 95, 97, 2003
+• .docx
+
+more coming soon...
+
+This program uses the following libraries:
 
 • https://pdfbox.apache.org/
 
