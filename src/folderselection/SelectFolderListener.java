@@ -106,8 +106,6 @@ public class SelectFolderListener implements ActionListener {
 		else if (fileType.equals(".docx")) 
 			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getTextFromDocxFile(file));
 		
-		System.out.println(fileType);
-		
 	}
 	
 	private void displayFileName() {

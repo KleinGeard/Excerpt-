@@ -27,9 +27,7 @@ public class DOCXTextExtractor {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
-		System.out.println(text + "WKWJHEKJWEKJNWKBHIUY BI");
+		}
 		
 		return new ArrayList<String> (Arrays.asList(text.split("\n")));
 	}
