@@ -4,8 +4,11 @@ A research tool used to get excerpts from a directory of files whether they be s
 This program currently searches through the following file types:
 
 • .txt
+
 • .pdf
+
 • .doc (6, 95, 97, 2003
+
 • .docx
 
 more coming soon...
