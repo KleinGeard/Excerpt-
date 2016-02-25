@@ -7,7 +7,7 @@ This program currently searches through the following file types:
 
 • .pdf
 
-• .doc (6, 95, 97, 2003
+• .doc (6, 95, 97, 2003)
 
 • .docx
 
