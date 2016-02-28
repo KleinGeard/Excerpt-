@@ -50,10 +50,9 @@ public class ResultButtonListener implements ActionListener {
 		
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private JList getResultList() {
+	private JList<Object> getResultList() {
 		
-		 return new JList(excerpts.getDisplayableArray().toArray());
+		return new JList<Object>(excerpts.getDisplayableArray().toArray());
 		
 	}
 
