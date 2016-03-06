@@ -11,10 +11,6 @@ import org.apache.poi.hwpf.extractor.Word6Extractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
 public class DOCTextExtractor {
-
-	public DOCTextExtractor() {
-		
-	}
 	
 	public ArrayList<String> getTextFromDocFile(File file) {
 		

@@ -10,10 +10,6 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class DOCXTextExtractor {
 
-	public DOCXTextExtractor() {
-		
-	}
-
 	public ArrayList<String> getTextFromDocxFile(File file) {
 
 		String text = "";

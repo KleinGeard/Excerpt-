@@ -8,10 +8,6 @@ import java.util.ArrayList;
 public class TXTTextExtractor {
 
 	private BufferedReader reader;
-	
-	public TXTTextExtractor() {
-		
-	}
 
 	public ArrayList<String> getTextFromTXTFile(File file) {
 		
