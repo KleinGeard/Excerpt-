@@ -57,10 +57,10 @@ public class SelectFolderListener implements ActionListener {
 	        	buttonEnabler.disableComponents();
 	        	
 	        	runFileChooser(); 
-	            addContentsToMap();
-	            
-	        	displayFileName();
-	            
+	        	if (chosenDirectory != null) {
+	        		addContentsToMap();
+	        		displayFileName();
+	        	}
 	        	buttonEnabler.enableComponents();
 	        	searchField.requestFocus();
 	        	
@@ -84,8 +84,7 @@ public class SelectFolderListener implements ActionListener {
 	
 	private void addContentsToMap() {
 		
-		this.fileNamesAndText.clear();
-		
+		this.fileNamesAndText.clear();	
 		for (File file : this.chosenDirectory.listFiles())
 			this.addContent(file);
 		
@@ -93,6 +92,7 @@ public class SelectFolderListener implements ActionListener {
 	
 	public void addContent(File file) {
 		
+		if (file.isFile()) {
 		String fileName = file.toString();
 		String fileType = fileName.substring(fileName.lastIndexOf('.'));
 		
@@ -105,7 +105,7 @@ public class SelectFolderListener implements ActionListener {
 			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getTextFromDocFile(file));
 		else if (fileType.equals(".docx")) 
 			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getTextFromDocxFile(file));
-		
+		}
 	}
 	
 	private void displayFileName() {
