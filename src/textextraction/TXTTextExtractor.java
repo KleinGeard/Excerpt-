@@ -5,11 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class TXTTextExtractor {
+public class TXTTextExtractor implements ITextExtractor {
 
 	private BufferedReader reader;
 
-	public ArrayList<String> getTextFromTXTFile(File file) {
+	@Override
+	public ArrayList<String> getText(File file) {
 		
 		ArrayList<String> lines = new ArrayList<>();
 		this.addLines(file, lines);

@@ -10,23 +10,22 @@ import java.util.Arrays;
 import org.apache.poi.hwpf.extractor.Word6Extractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
-public class DOCTextExtractor {
+public class DOCTextExtractor implements ITextExtractor{
 	
-	public ArrayList<String> getTextFromDocFile(File file) {
+	@Override
+	public ArrayList<String> getText(File file) {
 		
-		return new ArrayList<String>(Arrays.asList(this.parseToPlainText(file).split("\n")));
+		return new ArrayList<String>(Arrays.asList(this.parse(file).split("\n")));
 		
 	}
 	
-	private String parseToPlainText(File file) {
-		
-	    String text = this.getWord6or95(file);
+	public String parse(File file) {
+		String text = this.getWord6or95(file);
 	    
 	    if (text == "")
 	    	text = this.getWord1997or2003(file);
 	    
 	    return text;
-	    
 	}
 	
 	private String getWord6or95(File file) {
@@ -44,9 +43,9 @@ public class DOCTextExtractor {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
-		} 
-	}	
-	
+		}
+	}
+
 	private String getWord1997or2003(File file) {
 		try {
 	    	
@@ -64,5 +63,5 @@ public class DOCTextExtractor {
 			return "";
 		} 
 	}
-	
+
 }

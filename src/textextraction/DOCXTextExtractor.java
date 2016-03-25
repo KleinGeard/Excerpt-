@@ -8,9 +8,9 @@ import java.util.Arrays;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-public class DOCXTextExtractor {
+public class DOCXTextExtractor implements ITextExtractor {
 
-	public ArrayList<String> getTextFromDocxFile(File file) {
+	public ArrayList<String> getText(File file) {
 
 		String text = "";
 		

@@ -98,13 +98,13 @@ public class SelectFolderListener implements ActionListener {
 		
 		this.directoryLabel.setText("loading " + file.getName());
 		if (fileType.equals(".pdf"))
-			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getTextFromPDFFile(file));
+			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getText(file));
 		else if (fileType.equals(".txt")) 
-			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getTextFromTXTFile(file));
+			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
 		else if (fileType.equals(".doc"))
-			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getTextFromDocFile(file));
+			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getText(file));
 		else if (fileType.equals(".docx")) 
-			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getTextFromDocxFile(file));
+			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
 		}
 	}
 	

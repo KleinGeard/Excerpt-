@@ -11,7 +11,7 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-public class PDFTextExtractor {
+public class PDFTextExtractor implements ITextExtractor {
 
 	private PDFTextStripper textStripper;
 	private PDFParser parser;
@@ -32,11 +32,12 @@ public class PDFTextExtractor {
 		
 	}
 	
-	public ArrayList<String> getTextFromPDFFile(File file) {
+	@Override
+	public ArrayList<String> getText(File file) {
 		
 		this.initialisePDFBoxDocs(file);
 		
-		String textFromPDF = this.getTextFromPDFFile();
+		String textFromPDF = this.parse();
 		this.closeDocs();
 		
 		return new ArrayList<String>(Arrays.asList(textFromPDF.split("\n")));
@@ -57,7 +58,7 @@ public class PDFTextExtractor {
 		
 	}
 	
-	private String getTextFromPDFFile() {
+	private String parse() {
 		
 		try {
 			return this.textStripper.getText(this.pdDoc);
