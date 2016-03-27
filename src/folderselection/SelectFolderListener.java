@@ -27,6 +27,7 @@ public class SelectFolderListener implements ActionListener {
 	private JTextField searchField;
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
+	private String lastChosenDirectory = "";
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
@@ -56,10 +57,12 @@ public class SelectFolderListener implements ActionListener {
 	        	
 	        	buttonEnabler.disableComponents();
 	        	
-	        	runFileChooser(); 
+	        	runFileChooser();
 	        	if (chosenDirectory != null) {
-	        		addContentsToMap();
-	        		displayFileName();
+	        		if (!chosenDirectory.toString().equals(lastChosenDirectory.toString())) {
+	        			addContentsToMap();
+		        		displayFileName();
+	        		}
 	        	}
 	        	buttonEnabler.enableComponents();
 	        	searchField.requestFocus();
@@ -74,12 +77,16 @@ public class SelectFolderListener implements ActionListener {
 
 	private void runFileChooser() {
 		
+		if (this.chosenDirectory != null)
+			this.lastChosenDirectory = this.chosenDirectory.toString();
+		
 		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int returnValue = this.fileChooser.showOpenDialog(null);
 
         if (returnValue == JFileChooser.APPROVE_OPTION)
             this.chosenDirectory = this.fileChooser.getSelectedFile();
-		
+        
+        
 	}
 	
 	private void addContentsToMap() {
