@@ -120,7 +120,6 @@ public class Window {
 		this.panelCentre.setLayout(new BorderLayout());
 		this.frame.getContentPane().add(this.panelCentre, BorderLayout.CENTER);
 
-		
 	}
 	
 	private void addActionListeners() {
