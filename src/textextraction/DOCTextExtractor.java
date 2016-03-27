@@ -10,7 +10,7 @@ import java.util.Arrays;
 import org.apache.poi.hwpf.extractor.Word6Extractor;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 
-public class DOCTextExtractor implements ITextExtractor{
+public class DOCTextExtractor implements TextExtractor{
 	
 	@Override
 	public ArrayList<String> getText(File file) {

@@ -11,7 +11,7 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-public class PDFTextExtractor implements ITextExtractor {
+public class PDFTextExtractor implements TextExtractor {
 
 	private PDFTextStripper textStripper;
 	private PDFParser parser;

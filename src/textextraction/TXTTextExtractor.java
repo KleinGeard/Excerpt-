@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class TXTTextExtractor implements ITextExtractor {
+public class TXTTextExtractor implements TextExtractor {
 
 	private BufferedReader reader;
 
