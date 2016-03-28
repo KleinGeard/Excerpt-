@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -27,14 +28,38 @@ public class Displayer {
 	
 	public void display() {
 		
-		JPanel panelCentreCentre = this.createPanelCentreCentre();
-		JScrollPane topScroller = this.createTopScroller(panelCentreCentre);
-		
-		this.panelCentre.add(topScroller, BorderLayout.NORTH);
-		this.panelCentre.add(panelCentreCentre, BorderLayout.CENTER);
-		
+		if (this.hasMatches()){
+			
+			JPanel panelCentreCentre = this.createPanelCentreCentre();
+			JScrollPane topScroller = this.createTopScroller(panelCentreCentre);		
+			this.panelCentre.add(topScroller, BorderLayout.NORTH);
+			this.panelCentre.add(panelCentreCentre, BorderLayout.CENTER);
+			
+		} else {
+			
+			JPanel panelCentreTop = new JPanel();
+			panelCentre.add(panelCentreTop, BorderLayout.NORTH);
+			panelCentreTop.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+			panelCentreTop.setBackground(Color.WHITE);
+			
+			panelCentreTop.add(new JLabel("No Results Found."));
+			
+		}
+			
 		this.panelCentre.revalidate();
 		this.panelCentre.repaint();
+		
+	}
+	
+	private boolean hasMatches() {
+		
+		boolean hasMatches = false;
+		
+		for (Excerpts excerpts : this.results)
+			if (excerpts.getNumberOfMatches() > 0)
+				hasMatches = true;
+		
+		return hasMatches;
 		
 	}
 	
