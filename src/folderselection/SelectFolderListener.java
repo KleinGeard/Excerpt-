@@ -7,6 +7,7 @@ import java.util.HashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import application.ComponentEnabler;
@@ -28,19 +29,21 @@ public class SelectFolderListener implements ActionListener {
 	private JFileChooser fileChooser = new JFileChooser();
 	private File chosenDirectory;
 	private String lastChosenDirectory = "";
+	private JProgressBar progressBar;
 	private PDFTextExtractor pdfTextExtractor;
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
 	private DOCXTextExtractor docxTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
-			ComponentEnabler componentEnabler, JFrame frame, JTextField searchField) {
+			ComponentEnabler componentEnabler, JFrame frame, JTextField searchField, JProgressBar progressBar) {
 		
 		this.directoryLabel = directoryLabel;
 		this.fileNamesAndText = namesAndText;
 		this.buttonEnabler = componentEnabler;
 		this.frame = frame;
 		this.searchField = searchField;
+		this.progressBar = progressBar;
 		this.pdfTextExtractor = new PDFTextExtractor();
 		this.txtTextExtractor = new TXTTextExtractor();
 		this.docTextExtractor = new DOCTextExtractor();
@@ -60,6 +63,11 @@ public class SelectFolderListener implements ActionListener {
 	        	runFileChooser();
 	        	if (chosenDirectory != null) {
 	        		if (!chosenDirectory.toString().equals(lastChosenDirectory.toString())) {
+	        			
+	        			progressBar.setVisible(true);
+	                    progressBar.setMaximum(chosenDirectory.listFiles().length);
+	        			progressBar.setValue(0);
+	                    
 	        			addContentsToMap();
 		        		displayFileName();
 	        		}
@@ -86,7 +94,6 @@ public class SelectFolderListener implements ActionListener {
         if (returnValue == JFileChooser.APPROVE_OPTION)
             this.chosenDirectory = this.fileChooser.getSelectedFile();
         
-        
 	}
 	
 	private void addContentsToMap() {
@@ -95,23 +102,26 @@ public class SelectFolderListener implements ActionListener {
 		for (File file : this.chosenDirectory.listFiles())
 			this.addContent(file);
 		
+		
 	}
 	
 	public void addContent(File file) {
 		
-		if (file.isFile()) {
-		String fileName = file.toString();
-		String fileType = fileName.substring(fileName.lastIndexOf('.'));
+		this.progressBar.setValue(this.progressBar.getValue() + 1);
 		
-		this.directoryLabel.setText("loading " + file.getName());
-		if (fileType.equals(".pdf"))
-			this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getText(file));
-		else if (fileType.equals(".txt")) 
-			this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
-		else if (fileType.equals(".doc"))
-			this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getText(file));
-		else if (fileType.equals(".docx")) 
-			this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
+		if (file.isFile()) {
+			String fileName = file.toString();
+			String fileType = fileName.substring(fileName.lastIndexOf('.'));
+		
+			this.directoryLabel.setText("loading " + file.getName());
+			if (fileType.equals(".pdf"))
+				this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getText(file));
+			else if (fileType.equals(".txt")) 
+				this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
+			else if (fileType.equals(".doc"))
+				this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getText(file));
+			else if (fileType.equals(".docx")) 
+				this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
 		}
 	}
 	

@@ -108,9 +108,9 @@ public class Window {
 		this.panelNorthWest.add(this.btnSelectDirectory);
 		this.buttonEnabler.addComponent(this.btnSelectDirectory);
 		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(134, 98, 146, 14);
-		this.panelNorthWest.add(progressBar);
+		this.progressBar = new JProgressBar();
+		this.progressBar.setVisible(false);
+		this.panelNorthWest.add(this.progressBar);
 		
 		this.directoryLabel = new JLabel();
 		this.panelNorthWest.add(this.directoryLabel);
@@ -145,7 +145,7 @@ public class Window {
 	private void addActionListeners() {
 		
 		SelectFolderListener selectDirectoryFolderListener = new SelectFolderListener(this.directoryLabel,
-				this.namesAndText, this.buttonEnabler, this.frame, this.searchField);
+				this.namesAndText, this.buttonEnabler, this.frame, this.searchField, this.progressBar);
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
 		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, 
