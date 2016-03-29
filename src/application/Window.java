@@ -13,8 +13,10 @@ import folderselection.SelectFolderListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +33,7 @@ public class Window {
 	private JTextField searchField;
 	private JButton btnSearch;
 	private JButton btnSelectDirectory;
+	private JProgressBar progressBar;
 	private JLabel directoryLabel;
 	private HashMap<String, ArrayList<String>> namesAndText = new HashMap<>();
 	private ComponentEnabler buttonEnabler = new ComponentEnabler();
@@ -80,6 +83,19 @@ public class Window {
 		
 		this.initialiseNorthWestPanelComponents();
 		this.initialiseNorthEastPanelComponents();
+		//this.initialiseNorthCentrePanelComponents();
+		
+	}
+	
+	private void initialiseNorthCentrePanelComponents() {
+		
+		JPanel panelNorthCentre = new JPanel();
+		panelNorthCentre.setLayout(new FlowLayout());
+		this.panelNorth.add(panelNorthCentre, BorderLayout.CENTER);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(134, 98, 146, 14);
+		panelNorthCentre.add(progressBar, BorderLayout.CENTER);
 		
 	}
 	
@@ -91,6 +107,10 @@ public class Window {
 		this.btnSelectDirectory = new JButton("Select Directory");
 		this.panelNorthWest.add(this.btnSelectDirectory);
 		this.buttonEnabler.addComponent(this.btnSelectDirectory);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setBounds(134, 98, 146, 14);
+		this.panelNorthWest.add(progressBar);
 		
 		this.directoryLabel = new JLabel();
 		this.panelNorthWest.add(this.directoryLabel);
