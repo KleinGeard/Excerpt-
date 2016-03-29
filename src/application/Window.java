@@ -86,19 +86,6 @@ public class Window {
 		//this.initialiseNorthCentrePanelComponents();
 		
 	}
-	
-	private void initialiseNorthCentrePanelComponents() {
-		
-		JPanel panelNorthCentre = new JPanel();
-		panelNorthCentre.setLayout(new FlowLayout());
-		this.panelNorth.add(panelNorthCentre, BorderLayout.CENTER);
-		
-		JProgressBar progressBar = new JProgressBar();
-		progressBar.setBounds(134, 98, 146, 14);
-		panelNorthCentre.add(progressBar, BorderLayout.CENTER);
-		
-	}
-	
 	private void initialiseNorthWestPanelComponents() {
 		
 		this.panelNorthWest = new JPanel();
@@ -109,6 +96,7 @@ public class Window {
 		this.buttonEnabler.addComponent(this.btnSelectDirectory);
 		
 		this.progressBar = new JProgressBar();
+		this.progressBar.setPreferredSize(new Dimension(150, 20));
 		this.progressBar.setVisible(false);
 		this.panelNorthWest.add(this.progressBar);
 		
