@@ -95,11 +95,6 @@ public class Window {
 		this.panelNorthWest.add(this.btnSelectDirectory);
 		this.buttonEnabler.addComponent(this.btnSelectDirectory);
 		
-		this.progressBar = new JProgressBar();
-		this.progressBar.setPreferredSize(new Dimension(150, 20));
-		this.progressBar.setVisible(false);
-		this.panelNorthWest.add(this.progressBar);
-		
 		this.directoryLabel = new JLabel();
 		this.panelNorthWest.add(this.directoryLabel);
 		
@@ -127,6 +122,10 @@ public class Window {
 		this.panelCentre.setBackground(Color.WHITE);
 		this.panelCentre.setLayout(new BorderLayout());
 		this.frame.getContentPane().add(this.panelCentre, BorderLayout.CENTER);
+		
+		this.progressBar = new JProgressBar();
+		this.progressBar.setVisible(false);
+		this.panelCentre.add(this.progressBar, BorderLayout.SOUTH);
 
 	}
 	

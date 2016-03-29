@@ -70,6 +70,8 @@ public class SelectFolderListener implements ActionListener {
 	                    
 	        			addContentsToMap();
 		        		displayFileName();
+		        		
+		        		progressBar.setVisible(false);
 	        		}
 	        	}
 	        	buttonEnabler.enableComponents();
