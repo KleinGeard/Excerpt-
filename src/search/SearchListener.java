@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import application.ComponentEnabler;
@@ -18,14 +19,16 @@ public class SearchListener implements ActionListener {
 	private JTextField searchField;
 	private String searchTerm;
 	private ComponentEnabler buttonEnabler;
+	private JProgressBar progressBar;
 
 	public SearchListener(HashMap<String, ArrayList<String>> namesAndText, JPanel panelCentre,
-			JTextField searchField, ComponentEnabler buttonEnabler) {
+			JTextField searchField, ComponentEnabler buttonEnabler, JProgressBar progressBar) {
 		
 		this.namesAndText = namesAndText;
 		this.panelCentre = panelCentre;
 		this.searchField = searchField;
 		this.buttonEnabler = buttonEnabler;
+		this.progressBar = progressBar;
 		
 	}
 
@@ -58,7 +61,7 @@ public class SearchListener implements ActionListener {
 	
 	private ArrayList<Excerpts> getResults() {
 		
-		Searcher searcher = new Searcher(this.namesAndText, this.searchTerm);
+		Searcher searcher = new Searcher(this.namesAndText, this.searchTerm, this.progressBar);
 		return searcher.getResults();
 		
 	}

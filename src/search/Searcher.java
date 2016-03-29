@@ -3,6 +3,8 @@ package search;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JProgressBar;
+
 import utilities.Colours;
 import utilities.HTMLTextWrapper;
 
@@ -14,8 +16,9 @@ public class Searcher {
 	private HTMLTextWrapper textColourer;
 	private int excerptSize;
 	private int lineIndex;
+	private JProgressBar progressBar;
 	
-	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm) {
+	public Searcher(HashMap<String, ArrayList<String>> namesAndText, String searchTerm, JProgressBar progressBar) {
 
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
@@ -23,13 +26,22 @@ public class Searcher {
 		this.textColourer = new HTMLTextWrapper();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
+		this.progressBar = progressBar;
 		
 	}
 	
 	public ArrayList<Excerpts> getResults() {
 		
-		for (String name : this.namesAndText.keySet()) 
+		this.progressBar.setVisible(true);
+		this.progressBar.setMaximum(this.namesAndText.size());
+		this.progressBar.setValue(0);
+		
+		for (String name : this.namesAndText.keySet()) {
 			this.results.add(this.getExcerpts(name));
+			this.progressBar.setValue(this.progressBar.getValue() + 1);
+		}
+		
+		this.progressBar.setVisible(false);
 		
 		return this.results;
 		

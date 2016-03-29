@@ -28,6 +28,7 @@ public class Window {
 	private JFrame frame;
 	private JPanel panelNorth;
 	private JPanel panelCentre;
+	private JPanel panelSouth;
 	private JPanel panelNorthWest;
 	private JPanel panelNorthEast;
 	private JTextField searchField;
@@ -44,6 +45,7 @@ public class Window {
 		this.initialiseFrame();
 		this.initialiseNorthPanel();
 		this.initialiseCentrePanel();
+		this.initialiseSouthPanel();
 		this.addActionListeners();
 		this.addMnemonics();
 		this.frame.setVisible(true);
@@ -83,7 +85,6 @@ public class Window {
 		
 		this.initialiseNorthWestPanelComponents();
 		this.initialiseNorthEastPanelComponents();
-		//this.initialiseNorthCentrePanelComponents();
 		
 	}
 	private void initialiseNorthWestPanelComponents() {
@@ -122,10 +123,19 @@ public class Window {
 		this.panelCentre.setBackground(Color.WHITE);
 		this.panelCentre.setLayout(new BorderLayout());
 		this.frame.getContentPane().add(this.panelCentre, BorderLayout.CENTER);
+
+	}
+	
+	private void initialiseSouthPanel() {
+		
+		this.panelSouth = new JPanel();
+		this.panelSouth.setBackground(Color.WHITE);
+		this.panelSouth.setLayout(new BorderLayout());
+		this.frame.getContentPane().add(this.panelSouth, BorderLayout.SOUTH);
 		
 		this.progressBar = new JProgressBar();
 		this.progressBar.setVisible(false);
-		this.panelCentre.add(this.progressBar, BorderLayout.SOUTH);
+		this.panelSouth.add(this.progressBar, BorderLayout.SOUTH);
 
 	}
 	
@@ -136,7 +146,7 @@ public class Window {
 		this.btnSelectDirectory.addActionListener(selectDirectoryFolderListener);
 		
 		SearchListener searchListener = new SearchListener(this.namesAndText, this.panelCentre, 
-				this.searchField, this.buttonEnabler);
+				this.searchField, this.buttonEnabler, this.progressBar);
 		this.btnSearch.addActionListener(searchListener);
 		this.searchField.addActionListener(searchListener);
 		
