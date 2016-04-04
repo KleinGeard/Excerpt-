@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.BorderLayout;
 import java.awt.Color;
