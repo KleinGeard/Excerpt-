@@ -11,7 +11,6 @@ public class Excerpts {
 	private String searchTerm;
 	private ArrayList<Excerpt> excerpts;
 	private int totalNumberOfMatches;
-	private HTMLTextWrapper textColourer;
 	
 	public Excerpts(String name, String searchTerm) {
 		
@@ -19,7 +18,6 @@ public class Excerpts {
 		this.searchTerm = searchTerm;
 		this.excerpts = new ArrayList<>();
 		this.totalNumberOfMatches = 0;
-		this.textColourer = new HTMLTextWrapper();
 		
 	}
 	
