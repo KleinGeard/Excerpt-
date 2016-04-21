@@ -13,7 +13,6 @@ public class Searcher {
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
 	private ArrayList<Excerpts> results;
-	private HTMLTextWrapper textColourer;
 	private int excerptSize;
 	private int lineIndex;
 	private JProgressBar progressBar;
@@ -23,7 +22,6 @@ public class Searcher {
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
 		this.results = new ArrayList<Excerpts>();
-		this.textColourer = new HTMLTextWrapper();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
 		this.progressBar = progressBar;
@@ -50,7 +48,7 @@ public class Searcher {
 	private Excerpts getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts excerpts = new Excerpts(HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
+		Excerpts excerpts = new Excerpts(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
 		
 		this.lineIndex = 0;
 		
@@ -113,7 +111,7 @@ public class Searcher {
 	
 	private String getLineNumber(int lineIndex) {
 		
-		return HTMLTextWrapper.html + this.textColourer.wrapInColouredHTML(Colours.red, Integer.toString(lineIndex + 1));
+		return HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.red, Integer.toString(lineIndex + 1));
 		
 	}
 	
@@ -130,7 +128,7 @@ public class Searcher {
 	
 	private String getLineWithHighlightedSearchTerm(String line) {
 		
-		return line.replace(this.searchTerm, this.textColourer.wrapInColouredHTML(Colours.red, this.searchTerm));
+		return line.replace(this.searchTerm, HTMLTextWrapper.wrapInColouredHTML(Colours.red, this.searchTerm));
 		
 	}
 	
