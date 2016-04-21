@@ -56,10 +56,10 @@ public class Excerpts {
 	private ArrayList<String> addHeader(ArrayList<String> arrayOfLinesInAllExcerpts) {
 		
 		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + 
-				this.textColourer.wrapInColouredHTML(Colours.navy, "search term: " + this.searchTerm));
+				HTMLTextWrapper.wrapInColouredHTML(Colours.navy, "search term: " + this.searchTerm));
 		arrayOfLinesInAllExcerpts.add(this.name);
 		arrayOfLinesInAllExcerpts.add(HTMLTextWrapper.html + 
-				this.textColourer.wrapInColouredHTML(Colours.navy, "matches in this file: " + this.totalNumberOfMatches));	
+				HTMLTextWrapper.wrapInColouredHTML(Colours.navy, "matches in this file: " + this.totalNumberOfMatches));	
 		arrayOfLinesInAllExcerpts = this.addLines(3, arrayOfLinesInAllExcerpts);
 		
 		return arrayOfLinesInAllExcerpts;
