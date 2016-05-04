@@ -121,7 +121,7 @@ public class Searcher {
 		int numberOfSpaces = 7 - ("" + (lineIndex + 1)).length();
 		
 		for (int i = 0 ; i < numberOfSpaces ; i++) 
-			spaces += " "; //this character is [U-2000] it is NOT a regular space
+			spaces += "\u2000";
 		
 		return spaces;
 	}
