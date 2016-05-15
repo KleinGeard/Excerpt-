@@ -9,13 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import search.results.Page;
+
 public class ResultButtonListener implements ActionListener {
 
-	private Excerpts excerpts;
+	private Page excerpts;
 	private JPanel panelCentreCentre;
 	private JTextField searchField;
 	
-	public ResultButtonListener(Excerpts excerpts, JPanel panelCentreCentre, JTextField searchField) {
+	public ResultButtonListener(Page excerpts, JPanel panelCentreCentre, JTextField searchField) {
 
 		this.excerpts = excerpts;
 		this.panelCentreCentre = panelCentreCentre;

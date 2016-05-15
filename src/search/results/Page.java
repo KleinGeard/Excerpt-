@@ -1,18 +1,18 @@
-package search;
+package search.results;
 
 import java.util.ArrayList;
 
 import utilities.Colours;
 import utilities.HTMLTextWrapper;
 
-public class Excerpts {
+public class Page {
 
 	private String name;
 	private String searchTerm;
 	private ArrayList<Excerpt> excerpts;
 	private int totalNumberOfMatches;
 	
-	public Excerpts(String name, String searchTerm) {
+	public Page(String name, String searchTerm) {
 		
 		this.name = name;
 		this.searchTerm = searchTerm;

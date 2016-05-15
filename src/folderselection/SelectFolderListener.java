@@ -131,7 +131,6 @@ public class SelectFolderListener implements ActionListener {
 				this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
 				break;
 			}
-			
 		}
 	}
 	

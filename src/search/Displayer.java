@@ -12,13 +12,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import search.results.Page;
+
 public class Displayer {
 
 	private JPanel panelCentre;
-	private ArrayList<Excerpts> results;
+	private ArrayList<Page> results;
 	private JTextField searchField;
 	
-	public Displayer(JPanel panelCentre, ArrayList<Excerpts> results, JTextField searchField) {
+	public Displayer(JPanel panelCentre, ArrayList<Page> results, JTextField searchField) {
 		
 		this.panelCentre = panelCentre;
 		this.results = results;
@@ -55,7 +57,7 @@ public class Displayer {
 		
 		boolean hasMatches = false;
 		
-		for (Excerpts excerpts : this.results)
+		for (Page excerpts : this.results)
 			if (excerpts.getNumberOfMatches() > 0)
 				hasMatches = true;
 		
@@ -99,7 +101,7 @@ public class Displayer {
 	
 	private void addContentsToPanelCentreScroller(JPanel panelCentreCentre, JPanel panelCentreScroller) {
 		
-		for (Excerpts excerpts : this.results) {
+		for (Page excerpts : this.results) {
 			
 			if (excerpts.containsExcerpts()) {
 				

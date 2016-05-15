@@ -8,6 +8,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JTextField;
 
 import application.ComponentEnabler;
+import search.results.Page;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,14 +60,14 @@ public class SearchListener implements ActionListener {
 		
 	}
 	
-	private ArrayList<Excerpts> getResults() {
+	private ArrayList<Page> getResults() {
 		
 		Searcher searcher = new Searcher(this.namesAndText, this.searchTerm, this.progressBar);
 		return searcher.getResults();
 		
 	}
 	
-	private void display(ArrayList<Excerpts> results) {
+	private void display(ArrayList<Page> results) {
 		
 		Displayer displayer = new Displayer(this.panelCentre, results, this.searchField);
 		displayer.display();

@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import javax.swing.JProgressBar;
 
+import search.results.Excerpt;
+import search.results.Page;
 import utilities.Colours;
 import utilities.HTMLTextWrapper;
 
@@ -12,7 +14,7 @@ public class Searcher {
 
 	private HashMap<String, ArrayList<String>> namesAndText;
 	private String searchTerm;
-	private ArrayList<Excerpts> results;
+	private ArrayList<Page> results;
 	private int excerptSize;
 	private int lineIndex;
 	private JProgressBar progressBar;
@@ -21,14 +23,14 @@ public class Searcher {
 
 		this.namesAndText = namesAndText;
 		this.searchTerm = searchTerm;
-		this.results = new ArrayList<Excerpts>();
+		this.results = new ArrayList<Page>();
 		this.excerptSize = 7;
 		this.lineIndex = 0;
 		this.progressBar = progressBar;
 		
 	}
 	
-	public ArrayList<Excerpts> getResults() {
+	public ArrayList<Page> getResults() {
 		
 		this.progressBar.setVisible(true);
 		this.progressBar.setMaximum(this.namesAndText.size());
@@ -45,10 +47,10 @@ public class Searcher {
 		
 	}
 
-	private Excerpts getExcerpts(String name) {
+	private Page getExcerpts(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Excerpts excerpts = new Excerpts(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
+		Page excerpts = new Page(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
 		
 		this.lineIndex = 0;
 		
