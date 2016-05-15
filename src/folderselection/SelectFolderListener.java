@@ -116,14 +116,22 @@ public class SelectFolderListener implements ActionListener {
 			String fileType = fileName.substring(fileName.lastIndexOf('.'));
 		
 			this.directoryLabel.setText("loading " + file.getName());
-			if (fileType.equals(".pdf"))
+			
+			switch (fileType) {
+			case (".pdf"):
 				this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getText(file));
-			else if (fileType.equals(".txt")) 
+				break;
+			case (".txt"):
 				this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
-			else if (fileType.equals(".doc"))
+				break;
+			case (".doc"):
 				this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getText(file));
-			else if (fileType.equals(".docx")) 
+				break;
+			case (".docx"):
 				this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
+				break;
+			}
+			
 		}
 	}
 	
