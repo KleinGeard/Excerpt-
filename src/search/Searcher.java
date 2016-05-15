@@ -50,7 +50,7 @@ public class Searcher {
 	private Page getPage(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
-		Page excerpts = new Page(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
+		Page page = new Page(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
 		
 		this.lineIndex = 0;
 		
@@ -59,13 +59,13 @@ public class Searcher {
 			String line = lines.get(this.lineIndex).toLowerCase();
 			
 			if (line.contains(this.searchTerm)) 
-				excerpts.addExcept(this.getExcerpt(lines));
+				page.addExcept(this.getExcerpt(lines));
 			
 			this.lineIndex++;
 			
 		}
 		
-		return excerpts;
+		return page;
 		
 	}
 
@@ -88,7 +88,7 @@ public class Searcher {
 			String line = lines.get(this.lineIndex).toLowerCase();
 			boolean containsSearchTerm = line.contains(this.searchTerm);
 			
-			excerpt.addLine(this.getLineToBeAdded(line), containsSearchTerm);
+			excerpt.addLine(this.getExcerpLine(line), containsSearchTerm);
 			if (containsSearchTerm) 
 				indexesFromLastMatch = 0;
 			
@@ -105,7 +105,7 @@ public class Searcher {
 		
 	}
 	
-	private String getLineToBeAdded(String line) {
+	private String getExcerpLine(String line) {
 		
 		return this.getLineNumber(this.lineIndex) + this.getSpaces(this.lineIndex) + this.getLineWithHighlightedSearchTerm(line);
 		
