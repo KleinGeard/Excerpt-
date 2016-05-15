@@ -37,7 +37,7 @@ public class Searcher {
 		this.progressBar.setValue(0);
 		
 		for (String name : this.namesAndText.keySet()) {
-			this.results.add(this.getExcerpts(name));
+			this.results.add(this.getPage(name));
 			this.progressBar.setValue(this.progressBar.getValue() + 1);
 		}
 		
@@ -47,7 +47,7 @@ public class Searcher {
 		
 	}
 
-	private Page getExcerpts(String name) {
+	private Page getPage(String name) {
 		
 		ArrayList<String> lines = this.namesAndText.get(name);
 		Page excerpts = new Page(HTMLTextWrapper.html + HTMLTextWrapper.wrapInColouredHTML(Colours.navy, name), this.searchTerm);
