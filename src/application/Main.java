@@ -10,15 +10,9 @@ public class Main {
 			
 			public void run() {
 				
-				try {
+				Window window = new Window();
+				window.initialize();
 					
-					Window window = new Window();
-					window.initialize();
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
 			}
 			
 		});
