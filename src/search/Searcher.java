@@ -80,7 +80,7 @@ public class Searcher {
 	
 	private void addLinesToExcerpt(Excerpt excerpt, ArrayList<String> lines) {
 		
-		int indexesFromLastMatch = this.getOffset(this.lineIndex);
+		int indexesFromLastMatch = this.getOffset();
 		this.lineIndex = this.lineIndex + indexesFromLastMatch;
 		
 		while (indexesFromLastMatch <= this.excerptSize && this.lineIndex < lines.size()) {
@@ -99,9 +99,9 @@ public class Searcher {
 		
 	}
 	
-	private int getOffset(int lineIndex) {
+	private int getOffset() {
 		
-		return (lineIndex <= this.excerptSize) ? -lineIndex : -this.excerptSize;
+		return (this.lineIndex <= this.excerptSize) ? -lineIndex : -this.excerptSize;
 		
 	}
 	
