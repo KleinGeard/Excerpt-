@@ -88,7 +88,7 @@ public class Searcher {
 			String line = lines.get(this.lineIndex).toLowerCase();
 			boolean containsSearchTerm = line.contains(this.searchTerm);
 			
-			excerpt.addLine(this.getExcerpLine(line), containsSearchTerm);
+			excerpt.addLine(this.getExcerptLine(line), containsSearchTerm);
 			if (containsSearchTerm) 
 				indexesFromLastMatch = 0;
 			
@@ -105,7 +105,7 @@ public class Searcher {
 		
 	}
 	
-	private String getExcerpLine(String line) {
+	private String getExcerptLine(String line) {
 		
 		return this.getLineNumber(this.lineIndex) + this.getSpaces(this.lineIndex) + this.getLineWithHighlightedSearchTerm(line);
 		
