@@ -2,6 +2,7 @@ package textextraction;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class DOCTextExtractor implements TextExtractor{
 			
 			return text;
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "";
 		}
@@ -58,7 +59,7 @@ public class DOCTextExtractor implements TextExtractor{
 			
 			return text;
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "";
 		} 
