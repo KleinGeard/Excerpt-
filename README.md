@@ -1,6 +1,8 @@
 # Excerpter
 A research tool used to get excerpts from a directory of files whether they be scientific journals or your favourite books.
 
+![picture alt](http://i.imgur.com/zwMNFEt.png "Excerpter Screenshot")
+
 This program currently supports the following file types:
 
 • .txt
@@ -18,5 +20,3 @@ This program uses the following libraries:
 • https://pdfbox.apache.org/
 
 • http://poi.apache.org/
-
-![picture alt](http://i.imgur.com/zwMNFEt.png "Excerpter Screenshot")
