@@ -1,5 +1,5 @@
 # Excerpter
-A research tool used to get excerpts from a directory of files whether they be scientific journals or your favourite books.
+A research tool used to create excerpts from a directory of files.
 
 ![picture alt](http://i.imgur.com/zwMNFEt.png "Excerpter Screenshot")
 
