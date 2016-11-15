@@ -70,7 +70,7 @@ public class Window {
 		int screenWidth = screenSize.width;
 		int screenHeight = screenSize.height;
 		
-		this.frame = new JFrame("Ecerpter");
+		this.frame = new JFrame("Excerpter");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setSize(screenWidth / 2, screenHeight / 2);
 		this.frame.setExtendedState(this.frame.getExtendedState()|JFrame.MAXIMIZED_BOTH );

@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import application.ComponentEnabler;
 import textextraction.DOCTextExtractor;
 import textextraction.DOCXTextExtractor;
+import textextraction.HTMLTextExtractor;
 import textextraction.PDFTextExtractor;
 import textextraction.TXTTextExtractor;
 
@@ -34,6 +35,7 @@ public class SelectFolderListener implements ActionListener {
 	private TXTTextExtractor txtTextExtractor;
 	private DOCTextExtractor docTextExtractor;
 	private DOCXTextExtractor docxTextExtractor;
+	private HTMLTextExtractor htmlTextExtractor;
 	
 	public SelectFolderListener(JLabel directoryLabel, HashMap<String, ArrayList<String>> namesAndText, 
 			ComponentEnabler componentEnabler, JFrame frame, JTextField searchField, JProgressBar progressBar) {
@@ -48,6 +50,7 @@ public class SelectFolderListener implements ActionListener {
 		this.txtTextExtractor = new TXTTextExtractor();
 		this.docTextExtractor = new DOCTextExtractor();
 		this.docxTextExtractor = new DOCXTextExtractor();
+		this.htmlTextExtractor = new HTMLTextExtractor();
 		
 	}
 	
@@ -121,14 +124,17 @@ public class SelectFolderListener implements ActionListener {
 			case (".pdf"):
 				this.fileNamesAndText.put(file.getName(), this.pdfTextExtractor.getText(file));
 				break;
-			case (".txt"):
-				this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
-				break;
 			case (".doc"):
 				this.fileNamesAndText.put(file.getName(), this.docTextExtractor.getText(file));
 				break;
 			case (".docx"):
 				this.fileNamesAndText.put(file.getName(), this.docxTextExtractor.getText(file));
+				break;
+			case (".html"):
+				this.fileNamesAndText.put(file.getName(), this.htmlTextExtractor.getText(file));
+				break;
+			default:
+				this.fileNamesAndText.put(file.getName(), this.txtTextExtractor.getText(file));
 				break;
 			}
 		}
